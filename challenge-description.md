@@ -1,0 +1,227 @@
+# Stream Reasoning Workshop 2019 - Challenge Track
+
+# Description
+
+The idea of this Stream Reasoning (SR) Challenge originated in a
+session of the SR Workshop 2018, where several groups worked out a possible
+formats for comparing and evaluating stream reasoning/processing 
+tools. 
+
+One conclusion was that our community misses an unified agreement
+which formalism, languages, and standards stream reasoning/processing
+includes. Hence a benchmark competition comparing the tool performance
+is not feasible yet.
+
+Our idea is to host a "model and solve" challenge, where we evaluate the
+modelling skills independent of the formalism/language.
+For this, we provide a given scenario mixing cooperative intelligence transport
+systems and social media streams with one or more (if time allows) tasks to solve.
+At the end of the challenge, we will evaluate the development effort, easyness of use, and
+originality of the solutions. 
+
+**PS: Do we have the funding for awards?**
+
+The different teams can bring their own tools or are encouraged
+to apply another preferred tools, which might be from
+a different community.
+
+**Important: Please let us know what tool you will provide or would
+  like to use, so we can prepare ourselves for it!**
+
+# Important Dates
+
+* 08.04.2019: Team registration
+* 14.04.2019: Start of the challenge 
+* 17.04.2019: Presentation of results and report
+
+# Problem Description, Scenario, Tasks
+
+As mentioned, the format will be a "model and solve" challenge, where the
+modelling skills independent of the formalism/language are
+evaluated. We outline the two combined scenarios, introduce the tasks,
+and outline the rules.
+
+## Scenarios
+
+**C-ITS.**
+This C-ITS scenario is in the area of  cooperative intelligent
+transportation systems (C-ITS), where we are able observe and
+analyze streams of vehicle movements and traffic light signal phases.
+Additionally, we will include unexpected events (triggering by us)
+such as vehicle breakdowns.
+
+In this scenario we can group the tasks to be tackled into:
+
+* Gathering traffic statistics, e.g., counting the number of vehicles passing;
+* Event detection, e.g. detecting, accidents or traffic jams;
+* Diagnosis, e.g., finding the cause for a  traffic jam;
+* Motion planning, e.g., routing the vehicles optimally through the network.
+
+The challenges of this scenarios originates from spatio-temporal
+nature of the traffic data, the possible hight velocity and volume,
+and as well the rather complex domain model.
+
+**Social Media.**
+...
+
+**PS: Danh, please complete**
+
+
+**Combined Scenario.**
+Both scenario are integrated into a transport social media scenarios,
+where messages are either send from the vehicles or form fixed
+places. The combination allows us to add contextual
+information to the vehicle movements and variable locations
+to the messages. One task could include to distinguish different
+causes for a traffic jam, i.e., the traffic jam could be caused
+by external causes, e.g. a concert, or internal causes related
+to an overload of the road network. 
+
+
+**PS: Danh, we still need to integrate both scenarios (via GPS positions)**
+
+## Tasks
+
+Following, we present three fixed tasks, which are extended with
+user submitted task.
+
+**Task 1 (C-ITS).**
+Traffic jam detection...
+
+
+**Task 2 (Social Media).**
+To be defined...
+
+
+**Task 3 (Combined).**
+External causes, e.g. a concert, versus internal causes related
+to an overload of the road network...
+
+# Rules and Evaluation
+
+<!-- ## Rules and Evaluation -->
+
+We introduce the following rules (open for discussion):
+
+(1) The organizers select a number of problem tasks, which aree
+     selected from the given (see above) and user-submitted tasks. A
+     set of test streams for each task is predefined, expressed in
+     possible instance input formats Datalog and RDF.
+
+(2) The organizers provide a set of tools (list below), however, users are allow to
+   bring their own tools, or even simply use scripts.
+
+(3) For each task, teams are allowed to use a specific solver (or a
+solving script) and a problem encoding.
+
+(4) Teams can either be assembled before the conference, or are on-demand
+    set-up at the begin of the challenge.
+
+(5) Solutions should be presented at the end of the competition. 
+
+After the solution presentation, a jury selected from the workshop
+participant give scores according on the  criteria:
+
+* Development effort,
+* Operability and easyness of use,
+* Problem coverage,
+* Originality of the solutions.
+
+# Data, Platform, Systems
+
+
+## ITS Data
+
+The provided data is based on a realistic traffic simulation of four
+intersections in a #-shaped layout. The scenario environment was
+developed with the microscopic traffic simulation *SUMO* or *PTV VISSIM* 
+that allows us to simulate realistic driving behavior and signal
+phases. The structure of the intersection, driving patterns and signal
+phases are fixed, but we have adapted the traffic densities by light,
+medium, and heavy traffic.
+
+We extracted the actual state of each simulation step, allowing us to
+replay the simulation from the logs.Throughput of the replayed streams
+can be increased by replaying the simulation with 5ms, 10ms,
+50ms, and 100ms (real-time speed of traffic) delay.
+
+**Static Knowledge:**
+As shown in the figure, each intersection connects four roads with two incoming and outgoing lanes for each road.
+For the two incoming lane one signal group is assigned.
+Further, for each lane we define is geometrical extension (a polygon) and
+the connection from in incoming to outgoing lanes. As an example, lane "i100\_l1" in our model is
+described in Datalog as:
+
+* ``` intersection(i100). ```
+* ``` mapLaneIn(i100_l1). ```
+* ``` isPartOf(i100_l8, i100). ```
+* ``` hasGeo(i100_l1, "POLY((0 1, 2 1, 2 3, 0 3, 0 1))"). ```
+* ``` connected(i100_l1, i100_l3). ```
+
+![#-shaped intersections](DynaCon_Grid.pdf)
+
+
+The four signal groups are managed by one traffic light controller,
+which assigns red (stop) and green (go) states to signal phases. The
+signal phases for each signal group are encoded in a signal plan,
+where the green/red split of a full phase length is defined.
+
+We provide two separate schemas for this, one is the ITS ontology
+(http://www.kr.tuwien.ac.at/research/projects/loctrafflog/ekaw2018/)
+and the other is simplified version of the ontology encoded in
+Datalog. 
+
+**Data Streams:**
+The microscopic model of the traffic is represented by four data
+streams extracted from simulation in each step.  They include vehicle
+speed and position, heading, as well as signal phase states.  each
+data point has an vehicle ID $id$ (beside signal group id $group$, and
+a time stamp $ts$ assigned:
+
+* ``` speed(id, speed, ts) ```
+* ``` pos(id, point(x,y), ts) ```
+* ``` heading(id, angle, ts) ```
+* ``` signalPhase(group, state, ts) ```
+
+**PS: We could add a weather stream...**
+
+## Social Media Data
+
+**PS: Danh, please complete**
+
+## Evaluation Platform
+
+**PS: Needs to be clarified**
+
+## Systems
+
+Besides the user-provided system, we already provide a selection of
+systems that could be used in the challenge:
+
+* [CQELS](https://github.com/danhlephuoc/cqels)
+* [C-SPARQL](https://github.com/streamreasoning/CSPARQL-engine) or YASPER 
+* [Hexlite](https://pypi.org/project/hexlite/)
+* [RDFox](https://www.cs.ox.ac.uk/isg/tools/RDFox/)
+* [Vlog](https://github.com/jrbn/vlog)
+
+**PS: Need to check which each developer, to find out if we are allowed to us the tool**
+
+
+
+# Results
+
+Will be announced...
+
+# Organization
+
+The co-chairs of the event are:
+
+* Patrik Schneider, TU Wien and Siemens AG, Austria
+* Danh Le Phuoc, TU Berlin
+* Daniel de Leng, Linköping University 
+
+
+Riccardo Tommasini, Politecnico di Milano, helped design the challenge
+and supported us with TripleWave and RSPLab.
+	
+Thanks to the developers, who provided us with tools: 
