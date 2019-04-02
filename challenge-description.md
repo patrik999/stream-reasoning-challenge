@@ -1,8 +1,8 @@
 # Stream Reasoning Workshop 2019 - Challenge Track
 
-# Description
+# Introduction
 
-The idea of the Stream Reasoning (SR) Challenge originated in a first
+The idea of the Stream Reasoning Challenge (SRC) originated in a first
 session held at the SR Workshop 2018, where several groups worked out a possible
 formats for comparing and evaluating stream reasoning/processing 
 tools. 
@@ -22,10 +22,10 @@ social media streams with one or more tasks to solve.  At the end of
 the challenge, we aim at evaluating the development effort, easyness of
 use, and originality of the solutions.
 
-Importantly, the initial plan was to conduct a full challenge at the Stream Reasoning
+Importantly, the initial plan was to conduct the full SRC at the Stream Reasoning
 Workshop 2019. However, due to several open points and time limitation,
 we plan to finalize a clear format for challenge, and conduct the
-actual challenge on a future date (tbd).
+actual SRC on a future date (tbd).
 
 
 <!--
@@ -38,7 +38,7 @@ a different community.
 -->
 
 
-## Programm for 16.04.2019
+## Programm for April, 16th, 2019
 
 * 09:00 - 09:20  \  *Danh Le Phuoc*: Welcome and overview
 * 09:20 - 09:50  \  *Daniel Jakobsson*: Invited talk
@@ -49,14 +49,17 @@ a different community.
 
 ## Programm Details
 
-The first program point will be the keynote of Daniel Jakobsson with the aim
-of introducing more  use cases and data sources. The second
-program point will be a progress report on the hackaton,
-which includes the outline of two scenarios and possible tasks that
-could be solved in it. Further, it will outline possible rules
-for the hackaton and the means for its evaluation/scorings, as well as
-possible evaluation platforms.
-
+The first program point will be the keynote of Daniel Jakobsson with
+the aim of introducing more scenarios and data sources. The second
+program point will be a progress report on the SRC, which
+includes the outline of two scenarios and possible tasks that could be
+solved in it. Further, we will suggest possible rules for the SRC
+and the means for its evaluation/scorings, as well as possible
+evaluation platforms.  We then will start a hands-on meeting, where we
+discuss the above topics. Of interest will be (a) which scenarios
+should be used; (b) define the set of task that should be solved; and
+(c) agree on a framework on how the model challenge should be
+conducted, which includes also the evaluation platform.
 
 
 <!--
@@ -91,7 +94,7 @@ In this scenario we can group the tasks to be tackled into:
 * Diagnosis, e.g., finding the cause for a  traffic jam;
 * Motion planning, e.g., routing the vehicles optimally through the network.
 
-The challenges of this scenarios originates from spatio-temporal
+The difficulty of this scenarios originates from spatio-temporal
 nature of the traffic data, the possible hight velocity and volume,
 and as well the rather complex domain model.
 
@@ -109,7 +112,7 @@ of the data schema in LSBench.
 
 **Combined Scenario.**
 Both scenario are integrated into a transport social media scenarios,
-where the data of two above scenarios are correllated and can be overlayed.
+where the data of two above scenarios are correlated and could be combined.
 In particular, users in social network can be pedestrians or owners of the vehicles
 or users taking a ride-sharing services. Besides, the events relevant to traffic (e.g.
 music events, acidents, etc) can be extracted from messages/posts in a social media
