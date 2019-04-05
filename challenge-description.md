@@ -40,12 +40,12 @@ a different community.
 
 ## Programm for April, 16th, 2019
 
-* 09:00 - 09:20  \  *Danh Le Phuoc*: Welcome and overview
-* 09:20 - 09:50  \  *Daniel Jakobsson*: Invited talk
-* 09:50 - 10:30  \ *Patrik Schneider*: Follow up and progress
-* 10:30 - 10:45  \  Q&A with discussion
-* 10:45 - 11:00  \  Coffee break
-* 11:00 - 12:00  \ Brainstorming, finalization, and next steps 
+* 09:00 - 09:20   *Danh Le Phuoc*: Welcome and overview
+* 09:20 - 09:50   *TBA*: Invited talk
+* 09:50 - 10:30   *Patrik Schneider*: Follow up and progress
+* 10:30 - 10:45   Q&A with discussion
+* 10:45 - 11:00   Coffee break
+* 11:00 - 12:00  Brainstorming, finalization, and next steps 
 
 ## Programm Details
 
@@ -249,13 +249,17 @@ systems that could be used in the challenge:
 * [RDFox](https://www.cs.ox.ac.uk/isg/tools/RDFox/)
 * [Vlog](https://github.com/jrbn/vlog)
 
-**PS: Need to check which each developer, to find out if we are allowed to us the tool**
 
 <!--
 
 # Results
 
+**PS: Need to check which each developer, to find out if we are allowed to us the tool**
+
+
 Will be announced...
+
+-->
 
 # Organization
 
@@ -271,4 +275,4 @@ and supported us with TripleWave and RSPLab.
 	
 Thanks to the developers, who provided us with tools!
 
--->
+
