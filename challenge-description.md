@@ -267,7 +267,6 @@ The co-chairs of the event are:
 
 * Patrik Schneider, TU Wien and Siemens AG, Austria
 * Danh Le Phuoc, TU Berlin
-* Daniel de Leng, Linköping University 
 
 
 Riccardo Tommasini, Politecnico di Milano, helped design the challenge
