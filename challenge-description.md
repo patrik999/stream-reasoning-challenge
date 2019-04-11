@@ -209,7 +209,7 @@ described in Datalog as:
 * ``` hasGeo(i100_l1, "POLY((0 1, 2 1, 2 3, 0 3, 0 1))"). ```
 * ``` connected(i100_l1, i100_l3). ```
 
-![#-shaped intersections](dynacon_grid.pdf)
+![#-shaped intersections](dynacon_grid.png)
 
 
 The four signal groups are managed by one traffic light controller,
