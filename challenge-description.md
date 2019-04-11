@@ -41,17 +41,17 @@ a different community.
 ## Programm for April, 16th, 2019
 
 * 09:00 - 09:20   *Danh Le Phuoc*: Welcome and overview
-* 09:20 - 09:50   *TBA*: Invited talk
-* 09:50 - 10:30   *Patrik Schneider*: Follow up and progress
-* 10:30 - 10:45   Q&A with discussion
-* 10:45 - 11:00   Coffee break
-* 11:00 - 12:00  Brainstorming, finalization, and next steps 
+* 09:20 - 09:50   *Jacopo Urbani*: Invited talk
+* 09:50 - 10:20   *Patrik Schneider*: Follow up and progress
+* 10:20 - 10:40   Q&A with discussion
+* 10:40 - 11:00   Coffee break
+* 11:00 - 12:00   Brainstorming, finalization, and next steps 
 
 ## Programm Details
 
-The first program point will be the keynote of Daniel Jakobsson with
-the aim of introducing more scenarios and data sources. The second
-program point will be a progress report on the SRC, which
+The first program point will be the keynote of Jacopo Urbani with
+the aim of giving an overview on his survey on stream reasoning (1). The second
+program point will be a progress report on the challenge, which
 includes the outline of two scenarios and possible tasks that could be
 solved in it. Further, we will suggest possible rules for the SRC
 and the means for its evaluation/scorings, as well as possible
@@ -127,12 +127,18 @@ to an overload of the road network.
 
 ## Tasks
 
-Following, we present three fixed tasks, which are extended with
+Following, we present a list of possible tasks, which can be extended with
 user submitted task.
 
 **Task 1 (C-ITS).**
-Traffic jam detection...
+For the C-ITS scenario, we sugguest three successive more difficult tasks, which are
+taken from our EKAW 2018 paper (2):
 
+* Calculating the number of vehicles (split by vehicle type) and average speed passing each intersection on our map.
+
+* Detecting a traffic jam on an interesection, which needs to take into account that vehicles also stop (for a limited time) due to red lights.
+
+* Detecting traffic waves, also called phantom traffic jams, where decreas in traffic flow propagates throught the network. Traffic waves can be caused by human behaviour, accidents, artifical obstacles as narrowing of lanes.
 
 **Task 2 (Social Media).**
 To be defined...
@@ -274,4 +280,6 @@ and supported us with TripleWave and RSPLab.
 	
 Thanks to the developers, who provided us with tools!
 
+
+# References
 
