@@ -250,7 +250,7 @@ a time stamp $ts$ assigned:
 The data in a social network can be divided into two main categories: i) non-timestamped
 data (static data) containing the data that is not frequently changed or updated, and ii) streaming data
 containing the data that is updated or arrives frequently. Below Figure shows the two data layers that
-contain the static data and stream data we will use in our tests.
+contain the static data and stream data this scenario can provide.
 
 ![Linked Social Network](lsn.png)
 
