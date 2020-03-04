@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "its": "http://www.kr.tuwien.ac.at/its/ldm/items#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "http://www.w3.org/ns/prov#generatedAtTime": "$TIME$",
+  "@id": "its:$TRACE_ID$",
+  "@graph": [
+    {
+      "@id": "its:$OBS_ID$",
+      "its:pos": "$POS$",
+      "its:speed": {
+        "@type": "xsd:decimal",
+        "@value": "$SPEED$"
+      }
+    },
+    {
+      "@id": "its:$VEH_ID$",
+      "its:observed": {
+        "@id": "its:$OBS_ID$"
+      },
+      "its:vehicleMaker": "$BRAND$"
+    }
+  ]
+}
