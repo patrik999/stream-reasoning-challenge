@@ -13,9 +13,6 @@
                     "its:speed": "$Speed$",
                     "its:heading": "$Orient_Heading$"
                 },
-                "sosa:phenomenonTime" : {
-                    "@id":"sim:SimulationStep$step$"
-                },
                 "sosa:resultTime": "$dateTime$"
             },
             
@@ -29,9 +26,6 @@
                     "@id" : "result:Loc_$resultId$",
                     "schema:latitude":"$Position_Y$",
                     "schema:longitude":"$Position_X$"
-                },
-                "sosa:phenomenonTime" : {
-                    "@id":"sim:SimulationStep$step$"
                 },
                 "sosa:resultTime": "$dateTime$"
             }
