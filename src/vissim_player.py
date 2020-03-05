@@ -3,8 +3,10 @@
 import getopt, sys
 import optparse
 import time
-import abstract_player # Import file
 import json
+import uuid
+import datetime
+from abstract_player import AbstractPlayer # Import file
 
 class VissimPlayer(AbstractPlayer):
 
@@ -21,6 +23,7 @@ class VissimPlayer(AbstractPlayer):
 
         # Inits
         count_vehicles = 0
+        count = 0
         # traffic light only changes every 4 steps not every single time
         tlChange = 4 # 4 # (2 / (val_sleep * 80))
         tlCount = tlChange
@@ -84,12 +87,30 @@ class VissimPlayer(AbstractPlayer):
         		veh_fullid = veh_type_str + str(ind_id)
 
         		# Calculate the lane where the car is currently located in (Output only to std:out, but can be extended to DB if needed)
-        		vehicleGeoTxt = "POINT (" + str(mv_long) + " " + str(mv_lat) + ")"
+        		#vehicleGeoTxt = "POINT (" + str(mv_long) + " " + str(mv_lat) + ")"
         		#vehicleGeo = loads(vehicleGeoTxt)
 
         		#rows_heading.append({'iid': ind_id, 'x': mv_heading_dir})
 
-                yield msgVehicle
+        		# Create timestamp
+        		dateTimeStr = datetime.datetime.now()
+
+                # Unique # ID
+        		obsID = uuid.uuid1()
+
+                # create message from template
+        		msgVehicle = templ_str.replace("$VehicleID$", veh_fullid)
+        		msgVehicle = msgVehicle.replace("$Position_Y$", str(mv_lat))
+        		msgVehicle = msgVehicle.replace("$Position_X$", str(mv_long))
+        		msgVehicle = msgVehicle.replace("$Speed$", str(mv_speed))
+        		msgVehicle = msgVehicle.replace("$Orient_Heading$", str(mv_heading))
+        		msgVehicle = msgVehicle.replace("$VehicleType$", str(veh_type))
+        		msgVehicle = msgVehicle.replace("$step$", str(count))
+        		msgVehicle = msgVehicle.replace("$obsID$", str(obsID))
+        		msgVehicle = msgVehicle.replace("$TIMESTAMP$", str(dateTimeStr))
+        		msgVehicle = msgVehicle.replace("$dateTime$", str(dateTimeStr))
+
+        		yield msgVehicle
 
 
             # Init signals
@@ -153,7 +174,7 @@ class VissimPlayer(AbstractPlayer):
 
         			if len(sig_id_nr) > 0:
         				#rows_sig.append({'iid': sig_id_nr, 'x': sig_state_txt})
-                        yield msgVehicle
+        				yield msgVehicle
 
 
 
@@ -166,11 +187,11 @@ class VissimPlayer(AbstractPlayer):
 
 def main(argv):
 
-    player = VissimPlayer("SID", "TID")
+    player = VissimPlayer("../stream-log-files/vissim/trace_T1_light.json", "../stream-templates/traffic/vehicle_template_old.json")
 
     print("Start streaming...")
 
-    for msg in player.start(0): # 0.1
+    for msg in player.start(0.05): # 0.1
         print(msg)
 
     print("Stop streaming.")

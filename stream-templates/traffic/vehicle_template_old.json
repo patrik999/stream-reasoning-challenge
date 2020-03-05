@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "its": "http://www.kr.tuwien.ac.at/its/ldm/items#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+     "xsd": "http://www.w3.org/2001/XMLSchema#",
+     "schema": "http:/schema.org/"
+  },
+  "http://www.w3.org/ns/prov#generatedAtTime": "$TIMESTAMP$",
+  "@id": "$VehicleID$_$step$",
+  "@graph": [
+    {
+	"@id": "$obsID$",
+	"schema:geo": [ {
+	    "schema:latitude": "$Position_Y$",
+	    "schema:longitude": "$Position_X$",
+	} ],
+        "its:speed": "$Speed$"
+    },
+    {
+      "@id": "its:$VehicleID$",
+      "its:observed": {
+        "@id": "$VehicleID$_$step$"
+      },
+      "its:vehicleType": "$VehicleType$"
+    }
+  ]
+}
