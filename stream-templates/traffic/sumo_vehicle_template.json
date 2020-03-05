@@ -1,0 +1,39 @@
+    {
+        "@id": "vehicle:$VehicleID$",
+        "@type": "sosa:Sensor",
+        "sosa:madeObservation":[
+            {
+                "@id"   : "obs:Move_$obsMoveID$",
+                "@type" : "sosa:Observation",
+                "sosa:observedProperty":{
+                    "@id":"obsProp:Move"
+                },
+                "sosa:hasResult":{
+                    "@id":"result:Move_$resultId$",
+                    "its:speed": "$Speed$",
+                    "its:heading": "$Orient_Heading$"
+                },
+                "sosa:phenomenonTime" : {
+                    "@id":"sim:SimulationStep$step$"
+                },
+                "sosa:resultTime": "$dateTime$"
+            },
+            
+            {
+                "@id" : "obs:GPS_$obsGPSID$",
+                "@type" : "sosa:Observation",
+                "sosa:observedProperty":{
+                    "@id":"obsProp:Location"
+                },
+                "sosa:hasResult":{
+                    "@id" : "result:Loc_$resultId$",
+                    "schema:latitude":"$Position_Y$",
+                    "schema:longitude":"$Position_X$"
+                },
+                "sosa:phenomenonTime" : {
+                    "@id":"sim:SimulationStep$step$"
+                },
+                "sosa:resultTime": "$dateTime$"
+            }
+         ]
+    }
