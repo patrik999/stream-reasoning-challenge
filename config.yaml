@@ -1,4 +1,7 @@
 # Stream Generation Config
+websocketserver:
+  host: 0.0.0.0
+  port: 59126
 streams:
   vissim:
      streamVissim1: /stream-log-files/vissim/race_T1_light.json
