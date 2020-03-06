@@ -105,10 +105,10 @@ class VissimPlayer(AbstractPlayer):
         		msgVehicle = msgVehicle.replace("$Speed$", str(mv_speed))
         		msgVehicle = msgVehicle.replace("$Orient_Heading$", str(mv_heading))
         		msgVehicle = msgVehicle.replace("$VehicleType$", str(veh_type))
-        		msgVehicle = msgVehicle.replace("$step$", str(count))
-        		msgVehicle = msgVehicle.replace("$obsID$", str(obsID))
+        		msgVehicle = msgVehicle.replace("$STEP$", str(count))
+        		msgVehicle = msgVehicle.replace("$ObsID$", str(obsID))
         		msgVehicle = msgVehicle.replace("$TIMESTAMP$", str(dateTimeStr))
-        		msgVehicle = msgVehicle.replace("$dateTime$", str(dateTimeStr))
+        		#msgVehicle = msgVehicle.replace("$dateTime$", str(dateTimeStr))
 
         		yield msgVehicle
 
@@ -187,11 +187,11 @@ class VissimPlayer(AbstractPlayer):
 
 def main(argv):
 
-    player = VissimPlayer("../stream-log-files/vissim/trace_T1_light.json", "../stream-templates/traffic/vehicle_template_old.json")
+    player = VissimPlayer("../stream-log-files/vissim/trace_T1_light.json", "../stream-templates/traffic/vissim_vehicle_template.json")
 
     print("Start streaming...")
 
-    for msg in player.start(0.05): # 0.1
+    for msg in player.start(0.5): # 0.1
         print(msg)
 
     print("Stop streaming.")
