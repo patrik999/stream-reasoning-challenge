@@ -13,9 +13,9 @@
                     "its:speed": "$Speed$",
                     "its:heading": "$Orient_Heading$"
                 },
-                "sosa:resultTime": "$dateTime$"
+                "sosa:resultTime": "$TIMESTAMP$"
             },
-            
+
             {
                 "@id" : "obs:GPS_$obsGPSID$",
                 "@type" : "sosa:Observation",
@@ -27,7 +27,7 @@
                     "schema:latitude":"$Position_Y$",
                     "schema:longitude":"$Position_X$"
                 },
-                "sosa:resultTime": "$dateTime$"
+                "sosa:resultTime": "$TIMESTAMP$"
             }
          ]
     }

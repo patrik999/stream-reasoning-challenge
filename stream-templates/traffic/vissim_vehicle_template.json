@@ -7,10 +7,10 @@
      "schema": "http:/schema.org/"
   },
   "http://www.w3.org/ns/prov#generatedAtTime": "$TIMESTAMP$",
-  "@id": "$VehicleID$_$step$",
+  "@id": "$VehicleID$_$STEP$",
   "@graph": [
     {
-	"@id": "$obsID$",
+	"@id": "$ObsID$",
 	"schema:geo": [ {
 	    "schema:latitude": "$Position_Y$",
 	    "schema:longitude": "$Position_X$",
@@ -20,7 +20,7 @@
     {
       "@id": "its:$VehicleID$",
       "its:observed": {
-        "@id": "$VehicleID$_$step$"
+        "@id": "$ObsID$"
       },
       "its:vehicleType": "$VehicleType$"
     }

@@ -4,8 +4,8 @@ websocketserver:
   port: 59126
 streams:
   vissim:
-     streamVissim1: /stream-log-files/vissim/race_T1_light.json
-     streamVissim2: /stream-log-files/vissim/race_T2_light.json
+     streamVissim1: /stream-log-files/vissim/trace_T1_light.json
+     streamVissim2: /stream-log-files/vissim/trace_T2_light.json
   sumo:
     streamSumo1:  /stream-log-files/sumo/trace_T1_light.json
   simple:
@@ -21,5 +21,9 @@ player:
     class: SimplePlayer
     path: /src/simple_player.py
 templates:
-    vehicle-json: /traffic/vehicle_template.json
-    vehicle-nt: /traffic/vehicle_template.nt
+    traffic-json: 
+      substreamVissim1: /traffic/vehicle_template.json
+      substreamVissim2: /traffic/trafficLight_template.json
+    traffic-nt: 
+      substreamVissim1: /traffic/vehicle_template.nt
+      substreamVissim2: /traffic/trafficLight_template.nt
