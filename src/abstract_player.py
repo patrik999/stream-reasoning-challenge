@@ -15,7 +15,7 @@ class AbstractPlayer:  #__metaclass__ = ABCMeta
 
     def __init__(self, stream_id, template_dictionary):  # template_id
         self.streamID = stream_id
-        self.templateID = template_id
+        self.templateID = template_dictionary
 
 
     def start(self, freq_in_ms):
