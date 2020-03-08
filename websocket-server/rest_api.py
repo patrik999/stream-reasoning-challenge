@@ -43,7 +43,7 @@ class RestApi():
             
             #start broadcast messages from player (using multithreading)
             broadcast_thread=threading.Thread(target=self.broadcasting_thread, args=(self.player.start(frequency), ))
-            apiThread.start()
+            broadcast_thread.start()
             
             return json.dumps({"status":"ok"})
 
