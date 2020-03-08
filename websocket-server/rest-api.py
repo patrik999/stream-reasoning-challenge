@@ -1,40 +1,74 @@
+RELATIVE_ROOT_PATH="./.."
+from runpy import run_path
 from flask import Flask, json, request
+from websocket-server import WSSerer
+import threading
 
 class RestApi():
-    def __init__(self, host, port):
+    config=None
+    
+    def __init__(self, config):
+        self.config=config
+        #init rest api
         self.api = Flask(__name__)
-        self.host=host
-        self.port=port
+        
+        #init websocket server
+        self.wsServer = WSSerer(port=self.config["websocketserver"]["port"], host=self.config["websocketserver"]["host"])
+        
+        #=== define api routes ===
         @self.api.route('/init', methods=['GET'])
-        def init():
-          streamID=request.args.get('streamid', default = 1, type = str)
-          templateID=request.args.get('templateid', default = 1, type = str)
-          #TO-DO: initialize stream player
-
-          return json.dumps({"status":"ok"})
+        def init_route():#usage: /init?streamtype=vissim&streamid=streamVissim1&templatetype=traffic-json&templateid=substreamVissim1
+            #input parameters
+            streamType=request.args.get('streamtype', default = "vissim", type = str)
+            streamID=request.args.get('streamid', default = "streamVissim1", type = str)            
+            templateType=request.args.get('templatetype', default = "traffic-json", type = str)
+            templateID=request.args.get('templateid', default = "substreamVissim1", type = str)
+            
+            #load player
+            PlayerClass=self.player_class_loader(RELATIVE_ROOT_PATH+self.config["player"][streamType]["path"], self.config["player"][streamType]["class"])
+            
+            #init player
+            self.player=PlayerClass(self.config["streams"][streamType][streamID], self.config["templates"][templateType][templateID])
+            
+            return json.dumps({"status":"ok"})
 
         @self.api.route('/getkb', methods=['GET'])
-        def getkb():
-          with open("kb.txt","r") as f:
-            kb=f.read()
-          return kb
+        def getkb_route(): #usage: /getkb
+            return "knowledge base"
 
         @self.api.route('/start', methods=['GET'])
-        def start():
-          frequency=request.args.get('frequency', default = 1, type = int)
-          #start player
-          return json.dumps({"status":"ok"})
+        def start_route(): #usage: /start?frequency=10
+            #input parameters
+            frequency=request.args.get('frequency', default = 10, type = int)
+            
+            #start broadcast messages from player (using multithreading)
+            broadcast_thread=threading.Thread(target=self.broadcasting_thread, args=(self.player.start(frequency), ))
+            apiThread.start()
+            
+            return json.dumps({"status":"ok"})
 
         @self.api.route('/stop', methods=['GET'])
-        def stop():        
-          #stop player
-          return json.dumps({"status":"ok"})
+        def stop_route(): #usage: /stop    
+            self.player.stop()
+            return json.dumps({"status":"ok"})
 
-        @self.api.route('/mod', methods=['GET'])
-        def modify():
-          frequency=request.args.get('frequency', default = 1, type = int)
-          #modify player freq
-          return json.dumps({"status":"ok"})
+        @self.api.route('/modify', methods=['GET'])
+        def modify_route():
+            frequency=request.args.get('frequency', default = 10, type = int)
+            self.player.modify(frequency)
+            return json.dumps({"status":"ok"})
     
-    def run(self):
-         self.api.run(self.host, self.port)
+    def player_class_loader(self, path, class_name):
+        return run_path(path)[class_name]
+    
+    def broadcasting_thread(self,messages):
+        for msg in messages:
+            self.wsServer.broadcast(msg)
+    
+    def run(self, host, port):
+        websocket_thread=threading.Thread(target=self.wsServer.run_forever)
+        websocket_thread.start()
+        
+        self.api.run(host=self.config["restapi"]["host"], port=self.config["restapi"]["port"])
+            
+    

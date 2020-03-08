@@ -27,19 +27,3 @@ class SimplePlayer(AbstractPlayer):
     def modify(self, freq_in_ms):
         self.frequency = freq_in_ms
 
-def main(argv):
-
-    player = SimplePlayer("SID", "TID")
-
-    print("Start streaming...")
-
-    for msg in player.start(0): # 0.1
-        print(msg)
-
-    print("Stop streaming.")
-
-    player.close()
-
-if __name__ == "__main__":
-    import sys
-    main(sys.argv[1:])

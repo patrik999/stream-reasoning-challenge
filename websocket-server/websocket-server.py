@@ -13,5 +13,8 @@ class WSServer():
     def close_connection(self, client,_server):
         print(client,"disconnected")
 
+    def broadcast(self, message):
+        self.server.send_message_to_all(message)
+
     def run(self):
         self.server.run_forever()
