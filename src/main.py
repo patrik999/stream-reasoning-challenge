@@ -1,6 +1,3 @@
-import sys  
-sys.path.append("./../src")
-
 import threading
 import yaml
 from rest_api import RestApi
