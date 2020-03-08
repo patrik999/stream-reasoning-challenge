@@ -13,7 +13,7 @@ class RestApi():
         self.api = Flask(__name__)
         
         #init websocket server
-        self.wsServer = WSSerer(port=self.config["websocketserver"]["port"], host=self.config["websocketserver"]["host"])
+        self.wsServer = WSServer(port=self.config["websocketserver"]["port"], host=self.config["websocketserver"]["host"])
         
         #=== define api routes ===
         @self.api.route('/init', methods=['GET'])
@@ -66,7 +66,7 @@ class RestApi():
             self.wsServer.broadcast(msg)
     
     def run(self, host, port):
-        websocket_thread=threading.Thread(target=self.wsServer.run_forever)
+        websocket_thread=threading.Thread(target=self.wsServer.run)
         websocket_thread.start()
         
         self.api.run(host=self.config["restapi"]["host"], port=self.config["restapi"]["port"])
