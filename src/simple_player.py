@@ -22,7 +22,7 @@ class SimplePlayer(AbstractPlayer):
             #print self.constantTexts[index]
             msgText = "Test Msg " + str(index)
             yield msgText
-            time.sleep(self.frequency)
+            time.sleep(self.frequency/1000.0)
 
     def modify(self, freq_in_ms):
         self.frequency = freq_in_ms
