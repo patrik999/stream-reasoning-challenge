@@ -1,7 +1,7 @@
 
 import threading
 import yaml
-from rest-api import RestApi
+from rest_api import RestApi
 
 
 #load config

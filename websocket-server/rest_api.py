@@ -1,7 +1,7 @@
 RELATIVE_ROOT_PATH="./.."
 from runpy import run_path
 from flask import Flask, json, request
-from websocket-server import WSSerer
+from custom_websocket_server import WSSerer
 import threading
 
 class RestApi():
