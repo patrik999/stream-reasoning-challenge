@@ -65,7 +65,7 @@ class RestApi():
         for msg in messages:
             self.wsServer.broadcast(msg)
     
-    def run(self, host, port):
+    def run(self):
         websocket_thread=threading.Thread(target=self.wsServer.run)
         websocket_thread.start()
         
