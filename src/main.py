@@ -20,7 +20,7 @@ if __name__ == '__main__':
     api.run()
     
     
-    API_URL=CONFIG["restapi"]["host"]+":"+CONFIG["restapi"]["port"]
+    API_URL="http://"+CONFIG["restapi"]["host"]+":"+str(CONFIG["restapi"]["port"])
     #1: call api to init player
     httpResult=httprequest(API_URL+"/init",params={"streamtype":"simple"
                                        ,"streamid":"simpleStream"
