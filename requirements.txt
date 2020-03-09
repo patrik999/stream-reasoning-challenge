@@ -2,3 +2,4 @@ Flask==1.1.1
 PyYAML==5.3
 websocket-server==0.4
 websocket-client==0.57.0
+requests==2.23.0
