@@ -1,5 +1,5 @@
+import threading
 from websocket_server import WebsocketServer
-
 
 class WSServer():
     def __init__(self, port, host):
@@ -17,4 +17,5 @@ class WSServer():
         self.server.send_message_to_all(message)
 
     def run(self):
-        self.server.run_forever()
+        serverThread=threading.Thread(target=self.server.run_forever)
+        serverThread.start()

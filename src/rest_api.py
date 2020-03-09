@@ -30,7 +30,8 @@ class RestApi():
             #init player
             self.player=PlayerClass(self.config["streams"][streamType][streamID], self.config["templates"][templateType][templateID])
             
-            return json.dumps({"status":"ok"})
+            return json.dumps({"status":"ok",
+                               "websocket_url":"ws:"+self.config["websocketserver"]["host"]+":"+self.config["websocketserver"]["port"]})
 
         @self.api.route('/getkb', methods=['GET'])
         def getkb_route(): #usage: /getkb
@@ -66,9 +67,7 @@ class RestApi():
             self.wsServer.broadcast(msg)
     
     def run(self):
-        websocket_thread=threading.Thread(target=self.wsServer.run)
-        websocket_thread.start()
-        
+        self.wsServer.run()
         self.api.run(host=self.config["restapi"]["host"], port=self.config["restapi"]["port"])
             
     
