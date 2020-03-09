@@ -69,7 +69,7 @@ class RestApi():
     def run(self):
         self.wsServer.run()
         #self.api.run(host=self.config["restapi"]["host"], port=self.config["restapi"]["port"])
-        apiThread=threading.Thread(target=self.api.run, args=(host=self.config["restapi"]["host"], port=self.config["restapi"]["port"], ))
+        apiThread=threading.Thread(target=self.api.run, args=(self.config["restapi"]["host"], self.config["restapi"]["port"], ))
         apiThread.start()
             
     
