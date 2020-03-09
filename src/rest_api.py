@@ -31,7 +31,7 @@ class RestApi():
             self.player=PlayerClass(self.config["streams"][streamType][streamID], self.config["templates"][templateType][templateID])
             
             return json.dumps({"status":"ok",
-                               "websocket_url":"ws:"+self.config["websocketserver"]["host"]+":"+str(self.config["websocketserver"]["port"])})
+                               "websocket_url":"ws://"+self.config["websocketserver"]["host"]+":"+str(self.config["websocketserver"]["port"])})
 
         @self.api.route('/getkb', methods=['GET'])
         def getkb_route(): #usage: /getkb
