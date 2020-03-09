@@ -19,7 +19,7 @@ if __name__ == '__main__':
     api=RestApi(CONFIG)
     api.run()
     
-    
+    time.sleep(3) #waiting for server finish init
     API_URL="http://"+CONFIG["restapi"]["host"]+":"+str(CONFIG["restapi"]["port"])
     #1: call api to init player
     httpResult=httprequest(API_URL+"/init",params={"streamtype":"simple"
