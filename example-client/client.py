@@ -34,7 +34,9 @@ if status_code != 200:
 client=WSClient(httpResult["websocket_url"])
 client.set_consumer_function(my_consumer)
 client.connect()
-    
+
+time.sleep(2) #wait for client connect success
+
 #3: call api to start stream
 status_code, httpResult=httprequest(API_URL+"/start",params={"frequency":10})
 print(status_code, httpResult)
