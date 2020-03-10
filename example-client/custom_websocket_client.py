@@ -3,9 +3,12 @@ import threading
 
 class WSClient():
     client= None
+    
+    #default consumer as print out
+    comsumer= print
     def __init__(self, url):
-        def on_message(ws, message):
-            self.consumer(message)
+        def on_message(ws, data):
+            self.consumer(data)
 
         def on_error(ws, error):
             print(error)
@@ -16,15 +19,16 @@ class WSClient():
         def on_open(ws):
             print("open connection to server successful!")
             
+        #by default, set all event as default
         self.client = websocket.WebSocketApp(url,
                               on_message = on_message,
                               on_error = on_error,
                               on_close = on_close,
                               on_open = on_open)
+        
     def connect(self):
         clientThread=threading.Thread(target=self.client.run_forever)
         clientThread.start()
 
-    def consumer(self, data):
-        #TODO: strat comsuming stream data
-        print(data)
+    def set_consumer_function(self, consumer):
+        self.comsumer=comsumer

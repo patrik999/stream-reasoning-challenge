@@ -40,7 +40,7 @@ class RestApi():
 
         @self.api.route('/getkb', methods=['GET'])
         def getkb_route(): #usage: /getkb
-            return "knowledge base", 200
+            return json.dumps({"knowledge base":"example"}), 200
 
         @self.api.route('/start', methods=['GET'])
         def start_route(): #usage: /start?frequency=10
@@ -51,18 +51,18 @@ class RestApi():
             broadcast_thread=threading.Thread(target=self.broadcasting_thread, args=(self.player.start(frequency), ))
             broadcast_thread.start()
             
-            return json.dumps({"status":"ok"})
+            return json.dumps({"message":"success"}), 200
 
         @self.api.route('/stop', methods=['GET'])
         def stop_route(): #usage: /stop    
             self.player.stop()
-            return json.dumps({"status":"ok"})
+            return json.dumps({"message":"success"}), 200
 
         @self.api.route('/modify', methods=['GET'])
         def modify_route():
             frequency=request.args.get('frequency', default = 10, type = int)
             self.player.modify(frequency)
-            return json.dumps({"status":"ok"})
+            return json.dumps({"message":"success"}), 200
     
     def player_class_loader(self, path, class_name):
         return run_path(path)[class_name]
@@ -72,8 +72,10 @@ class RestApi():
             self.wsServer.broadcast(msg)
     
     def run(self):
+        #start websocket server
         self.wsServer.run()
-        #self.api.run(host=self.config["restapi"]["host"], port=self.config["restapi"]["port"])
+        
+        #start REST API server
         apiThread=threading.Thread(target=self.api.run, args=(self.config["restapi"]["host"], self.config["restapi"]["port"], ))
         apiThread.start()
             
