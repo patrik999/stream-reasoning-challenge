@@ -5,7 +5,7 @@ class WSClient():
     client= None
     
     #default consumer as print out
-    comsumer= print
+    consumer= print
     def __init__(self, url):
         def on_message(ws, data):
             self.consumer(data)
@@ -31,4 +31,4 @@ class WSClient():
         clientThread.start()
 
     def set_consumer_function(self, custom_consumer):
-        self.comsumer=custom_consumer
+        self.consumer=custom_consumer
