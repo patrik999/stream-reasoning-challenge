@@ -24,16 +24,15 @@ status_code, httpResult= httprequest(API_URL+"/init",params={"streamtype":"simpl
                                    ,"streamid":"simpleStream"
                                    ,"templatetype":"traffic-json"
                                    ,"templateid":"substreamVissim1"})
+#check if request has success
 print(status_code, httpResult)
 if status_code != 200:
     print("error!")
     sys.exit()
 
 #2: client connect to websocket url from the above init response
-
-    
 client=WSClient(httpResult["websocket_url"])
-client.set_consumer_function(my_consumer)
+client.set_consumer_function(my_consumer) #set your custom consumer here
 client.connect()
 
 time.sleep(2) #wait for client connect success
