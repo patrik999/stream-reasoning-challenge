@@ -18,7 +18,7 @@ git clone https://github.com/patrik999/stream-reasoning-challenge.git
 ```
 docker-compose up
 ```
-
+**Note**: To apply any change to server code, please run ``docker-compose up`--build```
 ### Client side
 go to folder ```example-client``` and run 
 ```
