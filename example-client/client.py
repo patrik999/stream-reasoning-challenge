@@ -2,6 +2,7 @@ import requests
 from custom_websocket_client import WSClient
 import yaml
 import sys
+import time
 
 def httprequest(url,params):
     response = requests.get(url = url, params = params) 
