@@ -1,6 +1,6 @@
 RELATIVE_ROOT_PATH="./.."
 from runpy import run_path
-from flask import Flask, json, request
+from flask import Flask, json, request, abort
 from custom_websocket_server import WSServer
 import threading
 
@@ -24,18 +24,23 @@ class RestApi():
             templateType=request.args.get('templatetype', default = "traffic-json", type = str)
             templateID=request.args.get('templateid', default = "substreamVissim1", type = str)
             
+            #check if type match with id
+            if streamID not in self.config["streams"][streamType]:
+                return json.dumps({"error":"stream ID does not match with stream type"}), 400
+            if templateID not in self.config["templates"][templateType]:
+                return json.dumps({"error":"template ID does not match with template type"}), 400
+            
             #load player
             PlayerClass=self.player_class_loader(RELATIVE_ROOT_PATH+self.config["player"][streamType]["path"], self.config["player"][streamType]["class"])
             
             #init player
             self.player=PlayerClass(self.config["streams"][streamType][streamID], self.config["templates"][templateType][templateID])
             
-            return json.dumps({"status":"ok",
-                               "websocket_url":"ws://"+self.config["websocketserver"]["host"]+":"+str(self.config["websocketserver"]["port"])})
+            return json.dumps({"websocket_url":"ws://"+self.config["websocketserver"]["host"]+":"+str(self.config["websocketserver"]["port"])}), 200
 
         @self.api.route('/getkb', methods=['GET'])
         def getkb_route(): #usage: /getkb
-            return "knowledge base"
+            return "knowledge base", 200
 
         @self.api.route('/start', methods=['GET'])
         def start_route(): #usage: /start?frequency=10
