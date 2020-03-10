@@ -30,5 +30,5 @@ class WSClient():
         clientThread=threading.Thread(target=self.client.run_forever)
         clientThread.start()
 
-    def set_consumer_function(self, consumer):
-        self.comsumer=comsumer
+    def set_consumer_function(self, custom_consumer):
+        self.comsumer=custom_consumer
