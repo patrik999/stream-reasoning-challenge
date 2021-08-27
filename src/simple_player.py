@@ -7,7 +7,7 @@ from abstract_player import AbstractPlayer
 
 class SimplePlayer(AbstractPlayer):
 
-    rounds = 500
+    rounds = 10 # 500
 
     def init(self, stream_id, template_id):  # __init__
         self.streamID = stream_id
