@@ -1,0 +1,7 @@
+    {
+        "@id": "tl:$IntersectionID$",
+        "@type": "sosa:Platform",
+        "sosa:hosts":[
+          $CHILDS$
+         ]
+    }

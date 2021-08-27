@@ -1,0 +1,17 @@
+
+          {
+          "@id": "tl:$TrafficLightID$",
+          "@type": "sosa:Sensor",
+          "sosa:madeObservation":[
+           {
+                "@type" : "sosa:Observation",
+                "sosa:observedProperty":{
+                    "@id":"obsProp:SignalState"
+                },
+                "sosa:hasResult":{
+                    "its:state": "$SignalState$"
+                },
+                "sosa:resultTime": "$Timestamp$"
+            }
+           ]
+          }
