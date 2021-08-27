@@ -58,7 +58,7 @@ class SumoPlayer(AbstractPlayer):
         tlCount = tlChange
 
         # Open template file
-        print(str(self.templates))
+        #print(str(self.templates))
         tempVehName = self.templates["subStreamVehicles"]
         #templ_file1 = open(tempVehName) #self.templateID
         templ_vehicles = open(tempVehName).read()
@@ -169,6 +169,8 @@ class SumoPlayer(AbstractPlayer):
             # Traffic lights
             tl_id_list = traci.trafficlight.getIDList()
 
+            print("Intersections with TLs: " +  str(len(tl_id_list)))
+
             # Group of traffic lights
             for intersID in tl_id_list:
 
@@ -176,27 +178,35 @@ class SumoPlayer(AbstractPlayer):
                 msg2_Childs = ""
 
                 replaceValues2 = {}
+                tlIDcheck = {}
                 #replaceValues2["$IntersectionID$"] = str(intersID)
                 replaceValues2["$Timestamp$"] = str(self.step)
 
                 # Get signals for one intersection
                 tl_states = traci.trafficlight.getRedYellowGreenState(intersID)
-                #msg2 = "tlPhase(" + str(self.step2) + "," + str(tl_id) + "," + tl_states + ")"
+                #msg3 = "tlPhase(" + str(self.step2) + "," + str(intersID) + "," + tl_states + ")"
+                #print(msg3)
 
                 if(intersID in self.rows_pos):
-                    row_pos = self.rows_pos[intersID]
+                    row_pos_values = self.rows_pos[intersID]
 
                     # Find tlight for position
-                    for row_pos in self.rows_pos: # row_pos is at tuple (tlid positions)
-                        tl_id = row_pos[0]
-                        tl_pos_dict = row_pos[1]
+                    for rowPosDict in row_pos_values: # row_pos is at tuple (tlid positions)
+                        tlID = rowPosDict["lane"]
+                        tlPositions = rowPosDict["pos"]
+                        #print(str(tlID) + str(tlPositions))
+
 
                         for i in range(0, len(tl_states)): # each char is one signal state
 
                             tlState = tl_states[i]
-                            if i in tl_pos_dict:
-                                replaceValues2["$TrafficLightID$"] = str(tl_id)
+                            if str(i+1) in tlPositions:
+                                replaceValues2["$TrafficLightID$"] = str(tlID)
                                 replaceValues2["$SignalState$"] = str(tlState)
+
+                                # Assure that it gets only added once
+                                if (tlID in tlIDcheck):
+                                    continue
 
                                 msg2_Temp = templ_TLs_Child
 
@@ -204,8 +214,10 @@ class SumoPlayer(AbstractPlayer):
                                     msg2_Temp = msg2_Temp.replace(key,val)
 
                                 if(len(msg2_Childs) > 0):
-                                    msg2_Childs = msg2_Childs + ", \n"
+                                    msg2_Childs = msg2_Childs + ","
                                 msg2_Childs = msg2_Childs + msg2_Temp
+
+                                tlIDcheck[tlID] = ""
 
                 if(len(msg2_Childs) > 0):
                     msg2 = msg2.replace("$CHILDS$", str(msg2_Childs))
@@ -288,7 +300,7 @@ def main(argv):
 
     print("Start streaming...")
 
-    for msg in player.start(0.5): # 0.1
+    for msg in player.start(0.1): # 0.1 0.5
         print(msg)
 
     print("Stop streaming.")
