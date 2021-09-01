@@ -30,7 +30,7 @@ class SumoPlayer(AbstractPlayer):
     # Global variable
     step_ratio = 3
     steps_limit = 250
-    sleep = 1.0
+    #sleep = 1.0
     config_name = ""
     templates = {}
 
@@ -68,9 +68,11 @@ class SumoPlayer(AbstractPlayer):
         #templ_file2a = open(tempTLName)
         templ_TLs = open(tempTLName).read()
 
-        tempTLName = self.templates["subStreamTrafficLightsChilds"]
-        #templ_file2b = open(tempTLName)
-        templ_TLs_Child = open(tempTLName).read()
+        if("subStreamTrafficLightsChilds" in self.templates):
+            tempTLName = self.templates["subStreamTrafficLightsChilds"]
+            templ_TLs_Child = open(tempTLName).read()
+        else:
+            templ_TLs_Child = ""
 
         # Load tl positions from local dir
         file1 = open("./tl_mappings.config", "r")
@@ -102,7 +104,7 @@ class SumoPlayer(AbstractPlayer):
             traci.simulationStep()
 
             self.step = self.step + 1
-            time.sleep(self.sleep) # 0.5
+            time.sleep(self.frequency) # sleep
 
             if(self.steps_limit < self.step):
                 break
@@ -208,20 +210,32 @@ class SumoPlayer(AbstractPlayer):
                                 if (tlID in tlIDcheck):
                                     continue
 
-                                msg2_Temp = templ_TLs_Child
-
-                                for key, val in replaceValues2.items():
-                                    msg2_Temp = msg2_Temp.replace(key,val)
 
                                 if(len(msg2_Childs) > 0):
-                                    msg2_Childs = msg2_Childs + ","
-                                msg2_Childs = msg2_Childs + msg2_Temp
+                                    msg2_Temp = templ_TLs_Child
+
+                                    for key, val in replaceValues2.items():
+                                        msg2_Temp = msg2_Temp.replace(key,val)
+
+                                    if(len(msg2_Childs) > 0):
+                                        msg2_Childs = msg2_Childs + ","
+                                    msg2_Childs = msg2_Childs + msg2_Temp
+                                else:
+                                    msg3 = msg2
+                                    for key, val in replaceValues2.items():
+                                        msg3 = msg3.replace(key,val)
+                                    yield msg3
 
                                 tlIDcheck[tlID] = ""
 
+
+                # Case with child template (e.g., RDF)
                 if(len(msg2_Childs) > 0):
                     msg2 = msg2.replace("$CHILDS$", str(msg2_Childs))
                     yield msg2
+                # Case with single template (e.g., ASP) is handled in loop
+
+
 
             #for lane_id in lane_id_list:
                 #lane_count = int(traci.lane.getLastStepVehicleNumber(lane_id))
@@ -251,6 +265,7 @@ class SumoPlayer(AbstractPlayer):
     def modify(self, freq_in_ms):
         self.frequency = freq_in_ms
 
+        print("Frequency set to: " + str(freq_in_ms))
 
     def loadTLPositions(self, linesBasePlan): #  namePlan, nameChg factor,
 
@@ -292,9 +307,9 @@ def main(argv):
     parser.add_option('--nogui', action="store_true", dest="nogui", default=False, help="Run the commandline version of sumo")
 
     templates = {}
-    templates["subStreamVehicles"] = "../stream-templates/traffic/vehicle_template.json"
-    templates["subStreamTrafficLights"] = "../stream-templates/traffic/traffic_light_template.json"
-    templates["subStreamTrafficLightsChilds"] = "../stream-templates/traffic/traffic_light_template2.json"
+    templates["subStreamVehicles"] = "../stream-templates/traffic/vehicle_template.asp" # json
+    templates["subStreamTrafficLights"] = "../stream-templates/traffic/traffic_light_template.asp" # json
+    # templates["subStreamTrafficLightsChilds"] = "../stream-templates/traffic/traffic_light_template2.json"
 
     player = SumoPlayer("../stream-log-files/sumo/testASP_30.sumocfg", templates)
 
