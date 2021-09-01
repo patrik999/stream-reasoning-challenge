@@ -33,3 +33,6 @@ templates:
     traffic-nt:
       subStreamVehicles: ../stream-templates/traffic/vehicle_template.nt
       subStreamTrafficLights: ../stream-templates/traffic/trafficLight_template.nt
+    traffic-asp:
+      subStreamVehicles: ../stream-templates/traffic/vehicle_template.asp
+      subStreamTrafficLights: ../stream-templates/traffic/traffic_light_template.asp
