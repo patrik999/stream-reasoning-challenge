@@ -11,6 +11,10 @@ part of the Stream Reasoning Workshop 2020 ()
 ```
 git clone https://github.com/patrik999/stream-reasoning-challenge.git
 ```
+2. Build server docker image:
+```
+docker build - < Dockerfile -t docker-srh21-sumo
+```
 
 2. Launch system in docker
 ```
@@ -21,10 +25,10 @@ docker run -it --rm\
     --volume="/etc/shadow:/etc/shadow:ro" \
     --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --user=$USER \
+    --user=srh21 \
     -p 59125:59125 \
     -p 59126:59126 \
-    docker-sumo \
+    docker-srh21-sumo \
     bash
 ```
 <!--2. Modify host and port for REST API and websocket server in ```config.yaml```
