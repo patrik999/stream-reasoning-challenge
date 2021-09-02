@@ -18,7 +18,7 @@ docker build - < Dockerfile -t docker-srh21-sumo
 
 2. Launch system in docker
 ```
-docker run -it --rm\
+docker run -it --rm \
     --env="DISPLAY" \
     --volume="/etc/group:/etc/group:ro" \
     --volume="/etc/passwd:/etc/passwd:ro" \
