@@ -1,46 +1,42 @@
 # Stream Reasoning Challenge 2020
 
-Official repository of the Stream Reasoning Challengee 2020, 
+Official repository of the Stream Reasoning Challengee 2020,
 part of the Stream Reasoning Workshop 2020 ()
-
 
 ## USAGE
 
 ### Server side
+
 1. Clone this git
+
 ```
 git clone https://github.com/patrik999/stream-reasoning-challenge.git
 ```
-2. Build server docker image:
-```
-docker build - < Dockerfile -t docker-srh21-sumo
-```
 
-2. Launch system in docker
-```
-docker run -it --rm \
-    --env="DISPLAY" \
-    --volume="/etc/group:/etc/group:ro" \
-    --volume="/etc/passwd:/etc/passwd:ro" \
-    --volume="/etc/shadow:/etc/shadow:ro" \
-    --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
-    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --user=srh21 \
-    -p 59125:59125 \
-    -p 59126:59126 \
-    docker-srh21-sumo \
-    bash
-```
-<!--2. Modify host and port for REST API and websocket server in ```config.yaml```
-3. Modify the expose ports in ```docker-compose.yml``` to matching with the ports you has modified in ```config.yaml```
-3. Run server using docker compose
+2. The **host** and **port** for the REST API and the websocket server are set in the `config.yaml` file. You could change it to another host and port.
+3. If you have modified the **port** in the `config.yaml`, you should change the expose ports in the `docker-compose.yml` too.
+4. Launch the server using docker compose by run the follow command (the first run will take sometime for the system build, from the next runs, it will get up faster):
+
 ```
 docker-compose up
 ```
-**Note**: To apply any change to server code, please run ```docker-compose up --build```
--->
+
+Once you see the output as below, it means the server are ready!
+
+> INFO:werkzeug: \* Running on http://172.18.0.2:59125/ (Press CTRL+C to quit)
+
+**Note**: For any modify in the server code, please run `docker-compose up --build` to rebuild the system.
+
 ### Client side
-go to folder ```example-client``` and run 
+
+Install dependencies:
+
+```
+python3 -m pip install websocket-client requests
+```
+
+Go to folder `example-client` and run:
+
 ```
 python3 client.py
 ```
