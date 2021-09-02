@@ -49,7 +49,7 @@ RUN cd $SUMO_HOME && ./configure && make -j$(nproc) && make install
 RUN adduser $SUMO_USER --disabled-password
 # CMD sumo-gui
 
-USER $SUMO_USER
+USER srh21
 WORKDIR /root
 COPY . .
 WORKDIR /root/src
