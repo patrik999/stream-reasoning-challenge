@@ -14,9 +14,9 @@ git clone https://github.com/patrik999/stream-reasoning-challenge.git
 cd stream-reasoning-challenge
 ```
 
-2. The **host** and **port** for the REST API and the websocket server are set in the `config.yaml` file. You could change it to another host and port.
+2. The **host** and **port** for the **REST API** and the **WebSocket server** are set in the `config.yaml` file. You could change it to another host and port.
 3. If you have modified the **port** in the `config.yaml`, you should change the expose ports in the `docker-compose.yml` too.
-4. Launch the server using docker compose by run the follow command (the first run will take sometime for the system build, from the next runs, it will get up faster):
+4. Launch the server using `docker-compose` by run the following command (the first run will take some time for the system build, from the next runs, it will get up faster):
 
 ```
 docker-compose up
@@ -30,13 +30,13 @@ Once you see the output as below, it means the server are ready!
 
 ### Client side
 
-Install dependencies:
+1. Install dependencies:
 
 ```
 python3 -m pip install websocket-client requests
 ```
 
-Go to folder `example-client` and run:
+2. Go to folder `example-client` and run:
 
 ```
 python3 client.py
