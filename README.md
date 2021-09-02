@@ -30,6 +30,8 @@ Once you see the output as below, it means the server are ready!
 
 ### Client side
 
+You should develope your own client using our **REST API** for trigger events such as **init**, **start**, **stop**. Bellow are our example for a basic client, you could modify this example to meet your need.
+
 1. Install dependencies:
 
 ```
