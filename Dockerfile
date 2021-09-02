@@ -55,4 +55,4 @@ COPY . .
 WORKDIR /root/src
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
-#CMD python3 main.py; sumo -c simulator/sumo/config.sumocfg -n simulator/sumo/netfile -r simulator/sumo/routefile
+CMD ["python3", "main.py"]
