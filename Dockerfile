@@ -19,7 +19,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         make \
         libxerces-c-dev \
         libfox-1.6-0 libfox-1.6-dev \
-        python2.7
+        python2.7 \
 		python3.6 \
 		python3-setuptools \
 		python3-pip \
