@@ -27,9 +27,14 @@ from abstract_player import AbstractPlayer # Import file
 
 class SumoPlayer(AbstractPlayer):
 
+    # Constants
+    TEMPL_PLACEHOLDER_CHILDS = "$CHILDS$"
+
     # Global variable
     step_ratio = 3
     steps_limit = 250
+    stopped = False
+
     #sleep = 1.0
     config_name = ""
     templates = {}
@@ -39,15 +44,25 @@ class SumoPlayer(AbstractPlayer):
 
     rows_pos = {}
 
+
+
     def __init__(self, sumo_config, template_dict):  # __init__
         self.streamID = sumo_config
         #self.templateID = template_path
         self.templates = template_dict
 
+    def stop(self):
+
+        self.stopped = True
+        print("SUMO is stopped")
+
 
     def start(self, freq_in_ms):
 
         self.frequency = freq_in_ms
+        self.stopped = False
+        self.step = 0
+        self.step2 = 0
 
         # Inits
         count_vehicles = 0
@@ -89,7 +104,7 @@ class SumoPlayer(AbstractPlayer):
         #else:
         #    sumoBinary = checkBinary('sumo-gui')
 
-        print("Starting with ratio: " + str(self.step_ratio) + " and " + self.config_name)
+        print("SUMO is starting with ratio: " + str(self.step_ratio) + " and " + self.config_name)
         print("Limit steps: " + str(self.steps_limit))
 
         #global step, step2, plan_changes, plan_received
@@ -101,6 +116,12 @@ class SumoPlayer(AbstractPlayer):
 
         # TraCI control loop
         while traci.simulation.getMinExpectedNumber() > 0:
+
+            # Check if stopped
+            if(self.stopped):
+                break
+
+            # Active simulation step
             traci.simulationStep()
 
             self.step = self.step + 1
@@ -117,7 +138,7 @@ class SumoPlayer(AbstractPlayer):
             print("Step: " + str(self.step) + " / " + str(self.step2))
 
             vehicle_id_list = traci.vehicle.getIDList()
-            print("Vehicles: " +  str(len(vehicle_id_list)))
+            print("Nr. of vehicles: " +  str(len(vehicle_id_list)))
 
             # Vehicles
 
@@ -155,11 +176,10 @@ class SumoPlayer(AbstractPlayer):
                 #print('Distance ', veh_id, ": ", traci.vehicle.getDistance(veh_id), " m")
 
                 # Speed
-                #print(templ_vehicles)
                 msg1 = templ_vehicles
                 for key, val in replaceValues.items():
                     msg1 = msg1.replace(key,val)
-                print(msg1)
+                # print(msg1)
                 yield msg1
 
                 #msg1a = "speed(" + str(self.step2) + "," + str(veh_id) + "," + str(veh_speed) + ") ."
@@ -178,6 +198,11 @@ class SumoPlayer(AbstractPlayer):
 
                 msg2 = templ_TLs.replace("$IntersectionID$",str(intersID))
                 msg2_Childs = ""
+
+                hasChildTemplate = False
+                if(self.TEMPL_PLACEHOLDER_CHILDS in msg2):
+                    hasChildTemplate = True
+
 
                 replaceValues2 = {}
                 tlIDcheck = {}
@@ -211,7 +236,7 @@ class SumoPlayer(AbstractPlayer):
                                     continue
 
 
-                                if(len(msg2_Childs) > 0):
+                                if(hasChildTemplate):
                                     msg2_Temp = templ_TLs_Child
 
                                     for key, val in replaceValues2.items():
@@ -230,8 +255,8 @@ class SumoPlayer(AbstractPlayer):
 
 
                 # Case with child template (e.g., RDF)
-                if(len(msg2_Childs) > 0):
-                    msg2 = msg2.replace("$CHILDS$", str(msg2_Childs))
+                if(hasChildTemplate):
+                    msg2 = msg2.replace(self.TEMPL_PLACEHOLDER_CHILDS, str(msg2_Childs))
                     yield msg2
                 # Case with single template (e.g., ASP) is handled in loop
 
@@ -256,9 +281,7 @@ class SumoPlayer(AbstractPlayer):
                         #if(not ws is None):
                         #    ws.send(msg2)
 
-
-
-        traci.close()
+        traci.close(False) # Immediate close
         sys.stdout.flush()
 
 
