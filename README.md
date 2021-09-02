@@ -11,6 +11,7 @@ part of the Stream Reasoning Workshop 2020 ()
 
 ```
 git clone https://github.com/patrik999/stream-reasoning-challenge.git
+cd stream-reasoning-challenge
 ```
 
 2. The **host** and **port** for the REST API and the websocket server are set in the `config.yaml` file. You could change it to another host and port.
