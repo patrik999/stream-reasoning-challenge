@@ -50,7 +50,7 @@ RUN adduser $SUMO_USER --disabled-password
 
 WORKDIR /root
 COPY . .
-WORKDIR /root/src
+#WORKDIR /root/src
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
-CMD ["python3", "main.py"]
+CMD ["python3", "src/main.py"]

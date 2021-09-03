@@ -2,7 +2,7 @@ import threading
 from custom_websocket_server import WSServer
 from flask import Flask, json, request, abort
 from runpy import run_path
-RELATIVE_ROOT_PATH = "./.."
+ROOT_PATH = "/root/"
 
 
 class RestApi():
@@ -48,7 +48,7 @@ class RestApi():
 
             # load player
             PlayerClass = self.player_class_loader(
-                RELATIVE_ROOT_PATH+self.config["player"][streamType]["path"], self.config["player"][streamType]["class"])
+                ROOT_PATH+self.config["player"][streamType]["path"], self.config["player"][streamType]["class"])
 
             # init player
             # self.config["templates"][templateType][templateID]

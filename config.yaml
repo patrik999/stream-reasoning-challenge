@@ -1,38 +1,38 @@
 # Stream Generation Config
 websocketserver:
-  host: 0.0.0.0
-  port: 59126
+    host: 0.0.0.0
+    port: 8889
 restapi:
-  host: 0.0.0.0
-  port: 59125
+    host: 0.0.0.0
+    port: 8888
 streams:
-  vissim:
-     streamVissim1: /stream-log-files/vissim/trace_T1_light.json
-  sumo:
-    #streamSumo1:  /stream-log-files/sumo/trace_T1_light.json
-    streamSumo1:  /stream-log-files/sumo/testASP_30.sumocfg
-    streamSumo2:  /stream-log-files/sumo/testASP_120.sumocfg
-    streamSumo3:  /stream-log-files/sumo/testASP_180.sumocfg
-  simple:
-    simpleStream:  null
+    vissim:
+        streamVissim1: /stream-log-files/vissim/trace_T1_light.json
+    sumo:
+        #streamSumo1:  /stream-log-files/sumo/trace_T1_light.json
+        streamSumo1: /stream-log-files/sumo/testASP_30.sumocfg
+        streamSumo2: /stream-log-files/sumo/testASP_120.sumocfg
+        streamSumo3: /stream-log-files/sumo/testASP_180.sumocfg
+    simple:
+        simpleStream: null
 player:
-  vissim:
-    class: VissimPlayer
-    path: /src/vissim_player.py
-  sumo:
-    class: SumoPlayer
-    path: /src/sumo_player.py
-  simple:
-    class: SimplePlayer
-    path: /src/simple_player.py
+    vissim:
+        class: VissimPlayer
+        path: /src/vissim_player.py
+    sumo:
+        class: SumoPlayer
+        path: /src/sumo_player.py
+    simple:
+        class: SimplePlayer
+        path: /src/simple_player.py
 templates:
     traffic-json:
-      subStreamVehicles: /stream-templates/traffic/vehicle_template.json
-      subStreamTrafficLights: /stream-templates/traffic/traffic_light_template.json
-      subStreamTrafficLightsChilds: /stream-templates/traffic/traffic_light_template2.json
+        subStreamVehicles: /stream-templates/traffic/vehicle_template.json
+        subStreamTrafficLights: /stream-templates/traffic/traffic_light_template.json
+        subStreamTrafficLightsChilds: /stream-templates/traffic/traffic_light_template2.json
     traffic-nt:
-      subStreamVehicles: /stream-templates/traffic/vehicle_template.nt
-      subStreamTrafficLights: /stream-templates/traffic/trafficLight_template.nt
+        subStreamVehicles: /stream-templates/traffic/vehicle_template.nt
+        subStreamTrafficLights: /stream-templates/traffic/trafficLight_template.nt
     traffic-asp:
-      subStreamVehicles: /stream-templates/traffic/vehicle_template.asp
-      subStreamTrafficLights: /stream-templates/traffic/traffic_light_template.asp
+        subStreamVehicles: /stream-templates/traffic/vehicle_template.asp
+        subStreamTrafficLights: /stream-templates/traffic/traffic_light_template.asp
