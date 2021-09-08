@@ -28,6 +28,29 @@ Once you see the output as below, it means the server are ready!
 
 **Note**: For any modify in the server code, please run `docker-compose up --build` to rebuild the system.
 
+### Server API
+
+Stream generation needs first to be initalized, then a new stream can be (re-)started, stopped, and the update frequency modified.
+The following is as list of possible REST-API calls:
+
+- Initialize stream generation: `/init?streamtype=TYPE&templatetype=TEMPLATE`,
+where TYPE has to be replaced with the type of stream, currently `sumo` is provided, TEMPLATE
+has to be replaced by the output format of send messages, currently `traffic-json`, `traffic-nt`,
+and `traffic-asp` are choosable.
+
+- Start stream generation: /start
+
+- Modify update frequency of a stream: /modify?frequency=0.1
+
+- Stop stream generation: /stop
+
+Note that the values arguments in  `/init` correspond to keys in `config.yaml`.
+Here an example for the initialization and start of a SUMO traffic stream that sends RDF message in JSON:
+
+`http://192.168.0.206:59125/init?streamtype=sumo&templatetype=traffic-json`
+`http://192.168.0.206:59125/start`
+
+
 ### Client side
 
 You should develope your own client using our **REST API** for trigger events such as **init**, **start**, **stop**. Bellow are our example for a basic client, you could modify this example to meet your need.
