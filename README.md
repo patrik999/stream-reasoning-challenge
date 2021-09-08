@@ -44,8 +44,8 @@ and `traffic-asp` are choosable.
 
 - Stop stream generation: `/stop`
 
-Note that the values arguments in  `/init` correspond to keys in `config.yaml`.
-Here an example for the initialization and start of a SUMO traffic stream that sends RDF message in JSON:
+Note that the arguments in  `/init` correspond to keys in `config.yaml`.
+Here is an example for the initialization and start of a SUMO traffic stream that sends RDF messages in JSON:
 
 `http://192.168.0.206:59125/init?streamtype=sumo&templatetype=traffic-json`, then
 `http://192.168.0.206:59125/start`
