@@ -1,7 +1,7 @@
 # Stream Reasoning Challenge 2021
 
-Official repository of the Stream Reasoning Challengee 2021,
-part of the Stream Reasoning Workshop 2021 (http://streamreasoning.org/events/srw2021)
+Official repository of the Stream Reasoning Challenge 2021,
+part of the [Stream Reasoning Workshop 2021](http://streamreasoning.org/events/srw2021).
 
 ## USAGE
 
@@ -9,7 +9,7 @@ part of the Stream Reasoning Workshop 2021 (http://streamreasoning.org/events/sr
 
 1. Clone this git
 
-```
+```shell
 git clone https://github.com/patrik999/stream-reasoning-challenge.git
 cd stream-reasoning-challenge
 ```
@@ -18,19 +18,22 @@ cd stream-reasoning-challenge
 3. If you have modified the **port** in the `config.yaml`, you should change the expose ports in the `docker-compose.yml` too.
 4. Launch the server using `docker-compose` by run the following command (the first run will take some time for the system build, from the next runs, it will get up faster):
 
-```
+```shell
 docker-compose up
 ```
 
-Once you see the output as below, it means the server are ready!
+Once you see the output as below, it means the server is ready!
 
 > INFO:werkzeug: \* Running on http://172.18.0.2:59125/ (Press CTRL+C to quit)
 
-**Note**: For any modify in the server code, please run `docker-compose up --build` to rebuild the system.
+**Note**: For any server code modification, rebuild the system by running:
+```shell
+run `docker-compose up --build`
+```
 
 ### Server API
 
-Stream generation needs first to be initalized, then a new stream can be (re-)started, stopped, and the update frequency modified.
+Stream generation needs first to be initialized, then a new stream can be (re-)started, stopped, and the update frequency modified.
 The following is a list of possible REST-API calls:
 
 - Initialize stream generation: `/init?streamtype=TYPE&templatetype=TEMPLATE`,
@@ -53,16 +56,16 @@ Here is an example for the initialization and start of a SUMO traffic stream tha
 
 ### Client side
 
-You should develope your own client using our **REST API** for trigger events such as **init**, **start**, **stop**. Bellow are our example for a basic client, you could modify this example to meet your need.
+You should develop your own client using our **REST API** for triggering events such as **init**, **start**, **stop**. Bellow is our example for a basic client, you could modify this example to meet your need.
 
 1. Install dependencies:
 
-```
+```shell
 python3 -m pip install websocket-client requests
 ```
 
 2. Go to folder `example-client` and run:
 
-```
+```shell
 python3 client.py
 ```
