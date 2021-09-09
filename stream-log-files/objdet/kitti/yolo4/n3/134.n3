@@ -1,0 +1,104 @@
+
+<http://sem.stream.reasoning/observation/134> a <http://www.w3.org/ns/sosa/Observation>;
+  <http://www.w3.org/ns/sosa/hasResult> <http://vision.semkg.org/detection/d000783c-4ea2-45c3-a19c-0a7f7720e176>,
+    <http://vision.semkg.org/detection/5523d25e-d1fb-428b-ae2f-c36646de96a7>, <http://vision.semkg.org/detection/a782ce32-20a5-4c3e-adb6-6f50a332eeb8>,
+    <http://vision.semkg.org/detection/e84984aa-16fa-493e-a46a-d1b91d05c6ae>, <http://vision.semkg.org/detection/1e949e3b-b931-4d33-99da-75f90b53694c>,
+    <http://vision.semkg.org/detection/ec4c2b97-cf6c-43d6-96c9-6f1d6f60588e>, <http://vision.semkg.org/detection/5b8e76b0-321d-4e91-860a-423e0c0e91df>;
+  <http://www.w3.org/ns/sosa/usedProcedure> <http://vision.semkg.org/detector/yolov4> .
+
+<http://vision.semkg.org/detection/d000783c-4ea2-45c3-a19c-0a7f7720e176> a <http://vision.semkg.org/onto/v0.1/Detection>,
+    <http://www.w3.org/ns/sosa/Result>;
+  <http://vision.semkg.org/onto/v0.1/hasDetectionScore> "0.9"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/box> <http://vision.semkg.org/box/00b6c41e-2f46-4f20-9d28-8f4603345f9d>;
+  <http://vision.semkg.org/onto/v0.1/isDetectedBy> <http://vision.semkg.org/detector/yolov4>;
+  <http://vision.semkg.org/onto/v0.1/isDetectionOf> <http://sem.stream.reasoning/frame/134> .
+
+<http://vision.semkg.org/box/00b6c41e-2f46-4f20-9d28-8f4603345f9d> a <http://vision.semkg.org/onto/v0.1/Box>;
+  <http://vision.semkg.org/onto/v0.1/centerY> "174.41501"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/centerX> "489.54"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasWidth> "18.440002"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasHeight> "12.610001"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<http://vision.semkg.org/detector/yolov4> a <http://vision.semkg.org/onto/v0.1/Detector>,
+    <http://www.w3.org/ns/sosa/Procedure> .
+
+<http://sem.stream.reasoning/frame/134> a <http://vision.semkg.org/onto/v0.1/Image>;
+  <http://vision.semkg.org/id> "134" .
+
+<http://vision.semkg.org/detection/5523d25e-d1fb-428b-ae2f-c36646de96a7> a <http://vision.semkg.org/onto/v0.1/Detection>,
+    <http://www.w3.org/ns/sosa/Result>;
+  <http://vision.semkg.org/onto/v0.1/hasDetectionScore> "0.9"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/box> <http://vision.semkg.org/box/85d491a5-76da-4e6e-bd6a-3c431a579d64>;
+  <http://vision.semkg.org/onto/v0.1/isDetectedBy> <http://vision.semkg.org/detector/yolov4>;
+  <http://vision.semkg.org/onto/v0.1/isDetectionOf> <http://sem.stream.reasoning/frame/134> .
+
+<http://vision.semkg.org/box/85d491a5-76da-4e6e-bd6a-3c431a579d64> a <http://vision.semkg.org/onto/v0.1/Box>;
+  <http://vision.semkg.org/onto/v0.1/centerY> "184.605"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/centerX> "377.465"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasWidth> "79.57001"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasHeight> "21.350006"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<http://vision.semkg.org/detection/a782ce32-20a5-4c3e-adb6-6f50a332eeb8> a <http://vision.semkg.org/onto/v0.1/Detection>,
+    <http://www.w3.org/ns/sosa/Result>;
+  <http://vision.semkg.org/onto/v0.1/hasDetectionScore> "0.9"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/box> <http://vision.semkg.org/box/51a372aa-46e2-4ee5-9fb4-0a88e5d793f4>;
+  <http://vision.semkg.org/onto/v0.1/isDetectedBy> <http://vision.semkg.org/detector/yolov4>;
+  <http://vision.semkg.org/onto/v0.1/isDetectionOf> <http://sem.stream.reasoning/frame/134> .
+
+<http://vision.semkg.org/box/51a372aa-46e2-4ee5-9fb4-0a88e5d793f4> a <http://vision.semkg.org/onto/v0.1/Box>;
+  <http://vision.semkg.org/onto/v0.1/centerY> "177.815"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/centerX> "549.21497"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasWidth> "38.809998"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasHeight> "27.169998"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<http://vision.semkg.org/detection/e84984aa-16fa-493e-a46a-d1b91d05c6ae> a <http://vision.semkg.org/onto/v0.1/Detection>,
+    <http://www.w3.org/ns/sosa/Result>;
+  <http://vision.semkg.org/onto/v0.1/hasDetectionScore> "0.9"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/box> <http://vision.semkg.org/box/2715f9d5-13db-4327-ae6f-7d48467566a9>;
+  <http://vision.semkg.org/onto/v0.1/isDetectedBy> <http://vision.semkg.org/detector/yolov4>;
+  <http://vision.semkg.org/onto/v0.1/isDetectionOf> <http://sem.stream.reasoning/frame/134> .
+
+<http://vision.semkg.org/box/2715f9d5-13db-4327-ae6f-7d48467566a9> a <http://vision.semkg.org/onto/v0.1/Box>;
+  <http://vision.semkg.org/onto/v0.1/centerY> "179.75"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/centerX> "464.79498"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasWidth> "13.589996"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasHeight> "13.579987"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<http://vision.semkg.org/detection/1e949e3b-b931-4d33-99da-75f90b53694c> a <http://vision.semkg.org/onto/v0.1/Detection>,
+    <http://www.w3.org/ns/sosa/Result>;
+  <http://vision.semkg.org/onto/v0.1/hasDetectionScore> "0.9"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/box> <http://vision.semkg.org/box/f981d9f2-9a96-47a2-aa76-5c7311387e02>;
+  <http://vision.semkg.org/onto/v0.1/isDetectedBy> <http://vision.semkg.org/detector/yolov4>;
+  <http://vision.semkg.org/onto/v0.1/isDetectionOf> <http://sem.stream.reasoning/frame/134> .
+
+<http://vision.semkg.org/box/f981d9f2-9a96-47a2-aa76-5c7311387e02> a <http://vision.semkg.org/onto/v0.1/Box>;
+  <http://vision.semkg.org/onto/v0.1/centerY> "204.7204"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/centerX> "588.22327"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasWidth> "63.302307"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasHeight> "63.11525"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<http://vision.semkg.org/detection/ec4c2b97-cf6c-43d6-96c9-6f1d6f60588e> a <http://vision.semkg.org/onto/v0.1/Detection>,
+    <http://www.w3.org/ns/sosa/Result>;
+  <http://vision.semkg.org/onto/v0.1/hasDetectionScore> "0.9"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/box> <http://vision.semkg.org/box/3c9bd66d-1d4b-477f-a59b-11da2f506d36>;
+  <http://vision.semkg.org/onto/v0.1/isDetectedBy> <http://vision.semkg.org/detector/yolov4>;
+  <http://vision.semkg.org/onto/v0.1/isDetectionOf> <http://sem.stream.reasoning/frame/134> .
+
+<http://vision.semkg.org/box/3c9bd66d-1d4b-477f-a59b-11da2f506d36> a <http://vision.semkg.org/onto/v0.1/Box>;
+  <http://vision.semkg.org/onto/v0.1/centerY> "188.77017"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/centerX> "43.36957"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasWidth> "81.80811"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasHeight> "37.755356"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<http://vision.semkg.org/detection/5b8e76b0-321d-4e91-860a-423e0c0e91df> a <http://vision.semkg.org/onto/v0.1/Detection>,
+    <http://www.w3.org/ns/sosa/Result>;
+  <http://vision.semkg.org/onto/v0.1/hasDetectionScore> "0.9"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/box> <http://vision.semkg.org/box/94831e3c-5737-4b53-9a01-69546205c3e5>;
+  <http://vision.semkg.org/onto/v0.1/isDetectedBy> <http://vision.semkg.org/detector/yolov4>;
+  <http://vision.semkg.org/onto/v0.1/isDetectionOf> <http://sem.stream.reasoning/frame/134> .
+
+<http://vision.semkg.org/box/94831e3c-5737-4b53-9a01-69546205c3e5> a <http://vision.semkg.org/onto/v0.1/Box>;
+  <http://vision.semkg.org/onto/v0.1/centerY> "193.7576"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/centerX> "788.6952"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasWidth> "14.129089"^^<http://www.w3.org/2001/XMLSchema#float>;
+  <http://vision.semkg.org/onto/v0.1/hasHeight> "31.255417"^^<http://www.w3.org/2001/XMLSchema#float> .

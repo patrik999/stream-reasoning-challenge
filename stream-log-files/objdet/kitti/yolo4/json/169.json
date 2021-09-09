@@ -1,0 +1,350 @@
+[ {
+  "@id" : "http://sem.stream.reasoning/frame/169",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Image" ],
+  "http://vision.semkg.org/id" : [ {
+    "@value" : "169"
+  } ]
+}, {
+  "@id" : "http://sem.stream.reasoning/observation/169",
+  "@type" : [ "http://www.w3.org/ns/sosa/Observation" ],
+  "http://www.w3.org/ns/sosa/hasResult" : [ {
+    "@id" : "http://vision.semkg.org/detection/5bcbbc30-a663-4fa3-813f-60241acceedf"
+  }, {
+    "@id" : "http://vision.semkg.org/detection/876d316f-abf2-4f2a-b0d4-58209934bc18"
+  }, {
+    "@id" : "http://vision.semkg.org/detection/af462380-07a2-4687-bcfc-49c7d44354a3"
+  }, {
+    "@id" : "http://vision.semkg.org/detection/1943229c-b17a-4515-96ed-5ced479b12ec"
+  }, {
+    "@id" : "http://vision.semkg.org/detection/b3ed6a74-6c28-4eef-af0a-c95a8194b3f4"
+  }, {
+    "@id" : "http://vision.semkg.org/detection/1454e9c6-c706-4cab-9797-9e1f586ece30"
+  }, {
+    "@id" : "http://vision.semkg.org/detection/92cbc430-05f5-4a9b-b671-686b3ef322e5"
+  }, {
+    "@id" : "http://vision.semkg.org/detection/8e56d6e8-33cc-4d6b-bd99-6800ff1d26d6"
+  }, {
+    "@id" : "http://vision.semkg.org/detection/6e15a754-52bb-42a7-b393-18736371a95b"
+  } ],
+  "http://www.w3.org/ns/sosa/usedProcedure" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/box/0b37aa1e-16af-4bc8-a755-e1e6d85549bc",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Box" ],
+  "http://vision.semkg.org/onto/v0.1/centerX" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "546.1151"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/centerY" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "191.39252"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasHeight" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "18.244385"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasWidth" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "19.86737"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/box/0dc3a462-811a-4046-b10a-351f44f53d2b",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Box" ],
+  "http://vision.semkg.org/onto/v0.1/centerX" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "871.734"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/centerY" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "204.08643"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasHeight" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "40.536682"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasWidth" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "24.689209"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/box/20c25e32-03aa-44fb-b9ed-f4409792cce0",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Box" ],
+  "http://vision.semkg.org/onto/v0.1/centerX" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "588.63525"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/centerY" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "206.37933"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasHeight" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "53.340134"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasWidth" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "53.51953"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/box/27743591-f00b-4adf-bad6-c21b4a6472a5",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Box" ],
+  "http://vision.semkg.org/onto/v0.1/centerX" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "1001.09436"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/centerY" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "208.43718"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasHeight" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "30.720062"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasWidth" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "85.53491"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/box/2af93879-846a-4103-8c46-3bb969c8531f",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Box" ],
+  "http://vision.semkg.org/onto/v0.1/centerX" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "183.44814"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/centerY" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "187.0"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasHeight" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "374.0"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasWidth" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "366.89627"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/box/4342b529-3441-49fd-8d6c-85d4a082a7e9",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Box" ],
+  "http://vision.semkg.org/onto/v0.1/centerX" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "224.12462"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/centerY" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "197.11249"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasHeight" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "28.018677"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasWidth" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "64.80472"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/box/6aa4cdf6-a584-4343-99b5-722e81936700",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Box" ],
+  "http://vision.semkg.org/onto/v0.1/centerX" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "1077.9626"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/centerY" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "208.61159"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasHeight" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "28.441254"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasWidth" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "70.49011"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/box/708e61bb-5b46-476f-a1bf-8d927175c98a",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Box" ],
+  "http://vision.semkg.org/onto/v0.1/centerX" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "466.735"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/centerY" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "184.12"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasHeight" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "14.559998"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasWidth" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "21.350006"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/box/83920c61-b09a-4d8b-bf9d-39820283f4c0",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Box" ],
+  "http://vision.semkg.org/onto/v0.1/centerX" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "505.06"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/centerY" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "183.15"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasHeight" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "16.5"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasWidth" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "26.199982"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detection/1454e9c6-c706-4cab-9797-9e1f586ece30",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detection", "http://www.w3.org/ns/sosa/Result" ],
+  "http://vision.semkg.org/box" : [ {
+    "@id" : "http://vision.semkg.org/box/20c25e32-03aa-44fb-b9ed-f4409792cce0"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasDetectionScore" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "0.9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectedBy" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectionOf" : [ {
+    "@id" : "http://sem.stream.reasoning/frame/169"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detection/1943229c-b17a-4515-96ed-5ced479b12ec",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detection", "http://www.w3.org/ns/sosa/Result" ],
+  "http://vision.semkg.org/box" : [ {
+    "@id" : "http://vision.semkg.org/box/0b37aa1e-16af-4bc8-a755-e1e6d85549bc"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasDetectionScore" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "0.9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectedBy" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectionOf" : [ {
+    "@id" : "http://sem.stream.reasoning/frame/169"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detection/5bcbbc30-a663-4fa3-813f-60241acceedf",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detection", "http://www.w3.org/ns/sosa/Result" ],
+  "http://vision.semkg.org/box" : [ {
+    "@id" : "http://vision.semkg.org/box/83920c61-b09a-4d8b-bf9d-39820283f4c0"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasDetectionScore" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "0.9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectedBy" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectionOf" : [ {
+    "@id" : "http://sem.stream.reasoning/frame/169"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detection/6e15a754-52bb-42a7-b393-18736371a95b",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detection", "http://www.w3.org/ns/sosa/Result" ],
+  "http://vision.semkg.org/box" : [ {
+    "@id" : "http://vision.semkg.org/box/6aa4cdf6-a584-4343-99b5-722e81936700"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasDetectionScore" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "0.9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectedBy" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectionOf" : [ {
+    "@id" : "http://sem.stream.reasoning/frame/169"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detection/876d316f-abf2-4f2a-b0d4-58209934bc18",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detection", "http://www.w3.org/ns/sosa/Result" ],
+  "http://vision.semkg.org/box" : [ {
+    "@id" : "http://vision.semkg.org/box/708e61bb-5b46-476f-a1bf-8d927175c98a"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasDetectionScore" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "0.9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectedBy" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectionOf" : [ {
+    "@id" : "http://sem.stream.reasoning/frame/169"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detection/8e56d6e8-33cc-4d6b-bd99-6800ff1d26d6",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detection", "http://www.w3.org/ns/sosa/Result" ],
+  "http://vision.semkg.org/box" : [ {
+    "@id" : "http://vision.semkg.org/box/0dc3a462-811a-4046-b10a-351f44f53d2b"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasDetectionScore" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "0.9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectedBy" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectionOf" : [ {
+    "@id" : "http://sem.stream.reasoning/frame/169"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detection/92cbc430-05f5-4a9b-b671-686b3ef322e5",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detection", "http://www.w3.org/ns/sosa/Result" ],
+  "http://vision.semkg.org/box" : [ {
+    "@id" : "http://vision.semkg.org/box/4342b529-3441-49fd-8d6c-85d4a082a7e9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasDetectionScore" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "0.9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectedBy" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectionOf" : [ {
+    "@id" : "http://sem.stream.reasoning/frame/169"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detection/af462380-07a2-4687-bcfc-49c7d44354a3",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detection", "http://www.w3.org/ns/sosa/Result" ],
+  "http://vision.semkg.org/box" : [ {
+    "@id" : "http://vision.semkg.org/box/2af93879-846a-4103-8c46-3bb969c8531f"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasDetectionScore" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "0.9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectedBy" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectionOf" : [ {
+    "@id" : "http://sem.stream.reasoning/frame/169"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detection/b3ed6a74-6c28-4eef-af0a-c95a8194b3f4",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detection", "http://www.w3.org/ns/sosa/Result" ],
+  "http://vision.semkg.org/box" : [ {
+    "@id" : "http://vision.semkg.org/box/27743591-f00b-4adf-bad6-c21b4a6472a5"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/hasDetectionScore" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#float",
+    "@value" : "0.9"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectedBy" : [ {
+    "@id" : "http://vision.semkg.org/detector/yolov4"
+  } ],
+  "http://vision.semkg.org/onto/v0.1/isDetectionOf" : [ {
+    "@id" : "http://sem.stream.reasoning/frame/169"
+  } ]
+}, {
+  "@id" : "http://vision.semkg.org/detector/yolov4",
+  "@type" : [ "http://vision.semkg.org/onto/v0.1/Detector", "http://www.w3.org/ns/sosa/Procedure" ]
+} ]

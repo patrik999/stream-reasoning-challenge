@@ -1,0 +1,94 @@
+[
+  {
+    "@id": "http://sem.stream.reasoning/frame/0",
+    "@type": [
+      "http://vision.semkg.org/onto/v0.1/Image"
+    ],
+    "http://vision.semkg.org/id": [
+      {
+        "@value": "0"
+      }
+    ]
+  },
+  {
+    "@id": "http://sem.stream.reasoning/observation/0",
+    "@type": [
+      "http://www.w3.org/ns/sosa/Observation"
+    ],
+    "http://www.w3.org/ns/sosa/hasResult": [
+      {
+        "@id": "http://vision.semkg.org/detection/741433fe-9208-42a5-abd1-d1fa6c3a686b"
+      }
+    ],
+    "http://www.w3.org/ns/sosa/usedProcedure": [
+      {
+        "@id": "http://vision.semkg.org/detector/yolov4"
+      }
+    ]
+  },
+  {
+    "@id": "http://vision.semkg.org/box/ed2e85fb-27ae-4334-8370-e93398ed54bf",
+    "@type": [
+      "http://vision.semkg.org/onto/v0.1/Box"
+    ],
+    "http://vision.semkg.org/onto/v0.1/centerX": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#float",
+        "@value": "280.6237"
+      }
+    ],
+    "http://vision.semkg.org/onto/v0.1/centerY": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#float",
+        "@value": "189.3652"
+      }
+    ],
+    "http://vision.semkg.org/onto/v0.1/hasHeight": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#float",
+        "@value": "27.946426"
+      }
+    ],
+    "http://vision.semkg.org/onto/v0.1/hasWidth": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#float",
+        "@value": "51.83644"
+      }
+    ]
+  },
+  {
+    "@id": "http://vision.semkg.org/detection/210f40fe-4e80-44c8-a69a-259b9025d1ce",
+    "@type": [
+      "http://vision.semkg.org/onto/v0.1/Detection",
+      "http://www.w3.org/ns/sosa/Result"
+    ],
+    "http://vision.semkg.org/box": [
+      {
+        "@id": "http://vision.semkg.org/box/ed2e85fb-27ae-4334-8370-e93398ed54bf"
+      }
+    ],
+    "http://vision.semkg.org/onto/v0.1/hasDetectionScore": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#float",
+        "@value": "0.9"
+      }
+    ],
+    "http://vision.semkg.org/onto/v0.1/isDetectedBy": [
+      {
+        "@id": "http://vision.semkg.org/detector/yolov4"
+      }
+    ],
+    "http://vision.semkg.org/onto/v0.1/isDetectionOf": [
+      {
+        "@id": "http://sem.stream.reasoning/frame/0"
+      }
+    ]
+  },
+  {
+    "@id": "http://vision.semkg.org/detector/yolov4",
+    "@type": [
+      "http://vision.semkg.org/onto/v0.1/Detector",
+      "http://www.w3.org/ns/sosa/Procedure"
+    ]
+  }
+]

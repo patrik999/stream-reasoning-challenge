@@ -14,6 +14,8 @@ streams:
         streamSumo3: stream-log-files/sumo/testASP_180.sumocfg
     simple:
         simpleStream: null
+    objdet:
+        streamKitti1: stream-log-files/objdet/kitti/yolo4/nt/
 player:
     vissim:
         class: VissimPlayer
@@ -24,6 +26,9 @@ player:
     simple:
         class: SimplePlayer
         path: src/simple_player.py
+    objdet:
+        class: ObjDetPlayer
+        path: src/objdet_player.py
 templates:
     traffic-json:
         subStreamVehicles: stream-templates/traffic/vehicle_template.json

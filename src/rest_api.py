@@ -2,7 +2,8 @@ import threading
 from custom_websocket_server import WSServer
 from flask import Flask, json, request, abort
 from runpy import run_path
-ROOT_PATH = "/root/"
+import os
+ROOT_PATH = os.path.abspath(os.curdir)
 
 
 class RestApi():
@@ -32,7 +33,7 @@ class RestApi():
 
             # check if type match with id
             if streamID not in self.config["streams"][streamType]:
-                return json.dumps({"error": "stream ID does not match with /streams/ids."}), 400
+                return json.dumps({"error": "stream ID \""+streamID+"\" does not match with /streams/ids. \""+streamType+"\""}), 400
 
             # Read all ids and path from streamType in dictionary, this will be give to the player
             templates = {}
