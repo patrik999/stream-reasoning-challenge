@@ -3,7 +3,7 @@ from custom_websocket_server import WSServer
 from flask import Flask, json, request, abort
 from runpy import run_path
 import os
-ROOT_PATH = os.path.abspath(os.curdir)
+ROOT_PATH = os.path.abspath(os.curdir) + "/"
 
 
 class RestApi():
