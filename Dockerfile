@@ -3,31 +3,18 @@ FROM ubuntu:18.04
 MAINTAINER Manh Nguyen Duc (manh.nguyenduc@campus.tu-berlin.de), Patrik Schneider (patrik@kr.tuwien.ac.at)
 LABEL Description="SR Hackathon 2021 integration Dockerised Simulation of Urban MObility(SUMO)"
 
-# ENV SUMO_VERSION 0.31.0
-# ENV SUMO_HOME /opt/sumo
-ENV SUMO_HOME /root/sumo
-ENV SUMO_USER srh21
-
+ENV SUMO_HOME /usr/share/sumo
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
 # Install system dependencies.
 
 RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 	PIP3_INSTALL="python3 -m pip --no-cache-dir install --upgrade" && \
-	GIT_CLONE="git clone --depth 10" && \
 	apt update && \
-	apt-get install -y vim && \
 	DEBIAN_FRONTEND=noninteractive $APT_INSTALL \
-        wget \
-        cmake \
-        g++ \
-        make \
-        libxerces-c-dev \
-        libfox-1.6-0 libfox-1.6-dev \
-        libgdal-dev libproj-dev libgl2ps-dev \
-        python2.7 \
 		python3 \
-		python3-setuptools \
 		python3-pip \
-		git \
+		software-properties-common \
 		&& \
 
 	$PIP3_INSTALL \
@@ -41,31 +28,14 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 	apt-get clean && \
 	apt-get autoremove
 
-# Download and extract source code (old version)
-#RUN wget http://downloads.sourceforge.net/project/sumo/sumo/version%20$SUMO_VERSION/sumo-src-$SUMO_VERSION.tar.gz
-#RUN tar xzf sumo-src-$SUMO_VERSION.tar.gz && \
-#    mv sumo-$SUMO_VERSION $SUMO_HOME && \
-#    rm sumo-src-$SUMO_VERSION.tar.gz
+RUN add-apt-repository -y ppa:sumo/stable
+RUN apt update
+RUN apt install -y sumo sumo-tools 
 
-# Configure and build from source.
-#RUN cd $SUMO_HOME && ./configure && make -j$(nproc) && make install
+RUN apt remove software-properties-common -y
+RUN apt clean -y && apt autoremove -y
 
 WORKDIR /root
-
-# Download and extract source code (new version)
-RUN git clone --recursive https://github.com/eclipse/sumo
-# RUN export SUMO_HOME="$PWD/sumo"
-RUN mkdir sumo/build/cmake-build
-WORKDIR /root/sumo/build/cmake-build
-RUN cmake ../..
-RUN make -j$(nproc)
-RUN adduser $SUMO_USER --disabled-password
-
-WORKDIR /root
-
 COPY . .
-#WORKDIR /root/src
 
-ENV LC_ALL C.UTF-8
-ENV LANG C.UTF-8
 CMD ["python3", "src/main.py"]

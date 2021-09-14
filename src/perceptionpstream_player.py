@@ -10,7 +10,7 @@ import os
 ROOT_DIR = os.path.abspath(os.curdir)
 
 
-class ObjDetPlayer(AbstractPlayer):
+class PerceptionStreamPlayer(AbstractPlayer):
 
     def init(self, stream_id, template_id):  # __init__
         self.streamID = stream_id
