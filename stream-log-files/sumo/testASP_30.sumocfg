@@ -10,11 +10,11 @@
 
     </input>
 
-    <output>
+    <!-- output>
         <write-license value="true"/>
         <human-readable-time value="true"/>
         <summary-output value="summary/temp-summary.xml"/>
-    </output>
+    </output -->
 
 	<time>
         <begin value="0"/>
