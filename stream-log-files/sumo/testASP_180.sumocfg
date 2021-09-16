@@ -4,17 +4,17 @@
 
     <input>
 		<!-- This is the net with the ASP generated TL Configuration -->
-        <net-file value="../stream-log-files/sumo/testASP.net.xml"/>
-        <route-files value="../stream-log-files/sumo/test_180.trips.xml"/>
-	<gui-settings-file value="../stream-log-files/sumo/gui-settings.xml"/>
+        <net-file value="testASP.net.xml"/>
+        <route-files value="test_180.trips.xml"/>
+	       <gui-settings-file value="gui-settings.xml"/>
 
     </input>
 
-    <output>
+    <!-- output>
         <write-license value="true"/>
-	<human-readable-time value="true"/>
-	<summary-output value="../stream-log-files/sumo/temp-summary.xml"/>
-    </output>
+	       <human-readable-time value="true"/>
+	        <summary-output value="stream-log-files/sumo/temp-summary.xml"/>
+    </output -->
 
 	<time>
         <begin value="0"/>

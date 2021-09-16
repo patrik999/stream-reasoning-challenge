@@ -1,7 +1,9 @@
-# Stream Reasoning Challenge 2021
+# Stream Reasoning Hackathon 2021
 
 Official repository of the Stream Reasoning Challenge 2021,
 part of the [Stream Reasoning Workshop 2021](http://streamreasoning.org/events/srw2021).
+
+All the details of the hackathon are given in the SR_Hackaton_2021_Overview.pdf document.
 
 ## USAGE
 

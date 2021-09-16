@@ -34,9 +34,15 @@ templates:
         subStreamVehicles: stream-templates/traffic/vehicle_template.json
         subStreamTrafficLights: stream-templates/traffic/traffic_light_template.json
         subStreamTrafficLightsChilds: stream-templates/traffic/traffic_light_template2.json
+        backgroundKB: stream-log-files/sumo/traffics_kb_small.json
     traffic-nt:
         subStreamVehicles: stream-templates/traffic/vehicle_template.nt
         subStreamTrafficLights: stream-templates/traffic/trafficLight_template.nt
+        backgroundKB: stream-log-files/sumo/traffics_kb_small.nt
     traffic-asp:
         subStreamVehicles: stream-templates/traffic/vehicle_template.asp
         subStreamTrafficLights: stream-templates/traffic/traffic_light_template.asp
+        backgroundKB: stream-log-files/sumo/traffics_kb_small.asp
+    kitti-json:
+        backgroundKB: stream-log-files/kitti/traffics_kb_small.json
+        
