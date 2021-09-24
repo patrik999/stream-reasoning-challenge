@@ -10,7 +10,7 @@ class AbstractPlayer:  #__metaclass__ = ABCMeta
 
     streamID = ""
     templateID = ""
-    frequency = 0.1 # Update every 100ms
+    frequency = 500 # Update every 500ms (Old: 0.1)
 
 
     def __init__(self, stream_id, template_dictionary):  # template_id
