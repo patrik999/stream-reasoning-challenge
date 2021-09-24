@@ -317,7 +317,7 @@ class SumoPlayer(AbstractPlayer):
     def modify(self, freq_in_ms):
         self.frequency = freq_in_ms
 
-        print("Frequency set to: " + str(freq_in_ms)) + " ms"
+        print("Frequency set to: " + str(freq_in_ms) + " ms")
 
     def loadTLPositions(self, linesBasePlan): #  namePlan, nameChg factor,
 
