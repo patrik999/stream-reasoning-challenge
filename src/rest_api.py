@@ -63,9 +63,9 @@ class RestApi():
             return json.dumps({"knowledge base": "example"}), 200
 
         @self.api.route('/start', methods=['GET'])
-        def start_route():  # usage: /start?frequency=10
+        def start_route():  # usage: /start?frequency=500
             # input parameters
-            frequency = request.args.get('frequency', default=10, type=int)
+            frequency = request.args.get('frequency', default=500, type=int) # Old 10
 
             # start broadcast messages from player (using multithreading)
             broadcast_thread = threading.Thread(
@@ -81,7 +81,7 @@ class RestApi():
 
         @self.api.route('/modify', methods=['GET'])
         def modify_route():
-            frequency = request.args.get('frequency', default=10, type=int)
+            frequency = request.args.get('frequency', default=500, type=int) # Old 10
             self.player.modify(frequency)
             return json.dumps({"message": "success"}), 200
 
