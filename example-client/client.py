@@ -1,11 +1,13 @@
-import requests 
+#!/usr/bin/env python
+
+import requests
 from custom_websocket_client import WSClient
 import yaml
 import sys
 import time
 
 def httprequest(url,params):
-    response = requests.get(url = url, params = params) 
+    response = requests.get(url = url, params = params)
     return response.status_code, response.json()
 
 
@@ -16,7 +18,7 @@ def my_consumer(data):
 #load config
 with open("../config.yaml","r") as f:
     CONFIG=yaml.safe_load(f)
-    
+
 API_URL="http://"+CONFIG["restapi"]["host"]+":"+str(CONFIG["restapi"]["port"])
 
 #1: call api to init player
@@ -43,4 +45,3 @@ print(status_code, httpResult)
 if status_code != 200:
     print("error! can not start!")
     sys.exit()
-    

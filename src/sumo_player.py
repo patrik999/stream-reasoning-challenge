@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 import os, sys, time
 import optparse
 import json
@@ -32,7 +31,7 @@ class SumoPlayer(AbstractPlayer):
 
     # Global variable
     step_ratio = 3
-    steps_limit = 250
+    #steps_limit = 250
     stopped = False
 
     #sleep = 1.0
@@ -66,12 +65,16 @@ class SumoPlayer(AbstractPlayer):
         else:
             return ""
 
-    def start(self, freq_in_ms):
+    #def start(self, freq_in_ms):
+
+    def start(self, freq_in_ms, replay):
+
 
         self.frequency = freq_in_ms # / 100 # Set to milliseconds * 10
         self.stopped = False
         self.step = 0
         self.step2 = 0
+        self.replay = replay
 
         # Inits
         count_vehicles = 0
@@ -113,204 +116,207 @@ class SumoPlayer(AbstractPlayer):
         #else:
         #    sumoBinary = checkBinary('sumo-gui')
 
-        print("SUMO is starting with ratio: " + str(self.step_ratio) + " and " + self.config_name)
-        print("Limit steps: " + str(self.steps_limit))
+        while True:
 
-        #global step, step2, plan_changes, plan_received
+            print("SUMO is starting with ratio: " + str(self.step_ratio) + " and " + self.config_name)
+            #print("Limit steps: " + str(self.steps_limit))
 
-        # this is the normal way of using traci. sumo is started as a
-        # subprocess and then the python script connects and runs
-        sumoCmd = [sumoBinary, "-S", "-Q", "-c", self.config_name ]
+            # this is the normal way of using traci. sumo is started as a
+            # subprocess and then the python script connects and runs
+            sumoCmd = [sumoBinary, "-S", "-Q", "-c", self.config_name ]
 
-        #print("D1: " + str(sumoCmd))
+            traci.start(sumoCmd)
 
-        traci.start(sumoCmd)
+            # TraCI control loop
+            while traci.simulation.getMinExpectedNumber() > 0:
 
-        # TraCI control loop
-        while traci.simulation.getMinExpectedNumber() > 0:
+                # Check if stopped
+                if(self.stopped):
+                    break
 
-            # Check if stopped
-            if(self.stopped):
-                break
+                # Active simulation step
+                traci.simulationStep()
 
-            # Active simulation step
-            traci.simulationStep()
+                self.step = self.step + 1
+                time.sleep(self.frequency / 1000) # sleep
 
-            self.step = self.step + 1
-            time.sleep(self.frequency / 1000) # sleep
+                #if(self.steps_limit < self.step):
+                #    break
 
-            if(self.steps_limit < self.step):
-                break
+                if(self.step % self.step_ratio != 0):
+                    continue
 
-            if(self.step % self.step_ratio != 0):
-                continue
+                self.step2 = int(self.step / self.step_ratio)
 
-            self.step2 = int(self.step / self.step_ratio)
+                print("Step: " + str(self.step) + " / " + str(self.step2))
 
-            print("Step: " + str(self.step) + " / " + str(self.step2))
+                vehicle_id_list = traci.vehicle.getIDList()
+                print("Nr. of vehicles: " +  str(len(vehicle_id_list)))
 
-            vehicle_id_list = traci.vehicle.getIDList()
-            print("Nr. of vehicles: " +  str(len(vehicle_id_list)))
+                # Vehicles
+                vehicles_ids=traci.vehicle.getIDList();
 
-            # Vehicles
-            vehicles_ids=traci.vehicle.getIDList();
+                lc = lambda s: s[:1].lower() + s[1:] if s else ''
 
-            lc = lambda s: s[:1].lower() + s[1:] if s else ''
+                for veh_id in vehicles_ids:
+                    #traci.vehicle.setSpeedMode(veh_id,0)
+                    #traci.vehicle.setSpeed(veh_id,15) #sets the speed of vehicles to 15 (m/s)
 
-            for veh_id in vehicles_ids:
-                #traci.vehicle.setSpeedMode(veh_id,0)
-                #traci.vehicle.setSpeed(veh_id,15) #sets the speed of vehicles to 15 (m/s)
+                    replaceValues = {}
+                    replaceValues["$VehicleID$"] = str(veh_id)
+                    replaceValues["$ObsID$"] = "O_" + str(veh_id) + "-" + str(self.step)
+                    replaceValues["$Timestamp$"] = str(self.step)
 
-                replaceValues = {}
-                replaceValues["$VehicleID$"] = str(veh_id)
-                replaceValues["$ObsID$"] = "O_" + str(veh_id) + "-" + str(self.step)
-                replaceValues["$Timestamp$"] = str(self.step)
+                    veh_speed = round(traci.vehicle.getSpeed(veh_id), 3)
+                    replaceValues["$Speed$"] = str(veh_speed)
+                    veh_type = traci.vehicle.getTypeID(veh_id)
+                    replaceValues["$Type$"] = lc(str(veh_type))
+                    veh_acc = round(traci.vehicle.getAcceleration(veh_id), 4)
+                    replaceValues["$Accel$"] = str(veh_acc)
+                    veh_angle = round(traci.vehicle.getAngle(veh_id), 4)
+                    replaceValues["$Orient_Heading$"] = str(veh_angle)
+                    veh_pos = traci.vehicle.getPosition(veh_id)
+                    #veh_pos = veh_pos.replace('(','').replace('','').strip()
 
-                veh_speed = round(traci.vehicle.getSpeed(veh_id), 3)
-                replaceValues["$Speed$"] = str(veh_speed)
-                veh_type = traci.vehicle.getTypeID(veh_id)
-                replaceValues["$Type$"] = lc(str(veh_type))
-                veh_acc = round(traci.vehicle.getAcceleration(veh_id), 4)
-                replaceValues["$Accel$"] = str(veh_acc)
-                veh_angle = round(traci.vehicle.getAngle(veh_id), 4)
-                replaceValues["$Orient_Heading$"] = str(veh_angle)
-                veh_pos = traci.vehicle.getPosition(veh_id)
-                #veh_pos = veh_pos.replace('(','').replace('','').strip()
-
-                # Lane id needs to be map to asp encoding
-                #veh_laneID = str(traci.vehicle.getLaneID(veh_id))
-                veh_laneID = str(traci.vehicle.getRoadID(veh_id))
+                    # Lane id needs to be map to asp encoding
+                    #veh_laneID = str(traci.vehicle.getLaneID(veh_id))
+                    veh_laneID = str(traci.vehicle.getRoadID(veh_id))
 
 
-                if veh_laneID in self.lane_mappings:
-                    laneTuple = self.lane_mappings[veh_laneID] # (sumo id, asp id, asp orientation)
-                    replaceValues["$LaneID$"] = laneTuple[1]
-                    replaceValues["$LaneOrient$"] = laneTuple[2]
-                else:
-                    print("D2: " + str(veh_laneID))
-                    replaceValues["$LaneID$"] = "_"
-                    replaceValues["$LaneOrient$"] = "_"
+                    if veh_laneID in self.lane_mappings:
+                        laneTuple = self.lane_mappings[veh_laneID] # (sumo id, asp id, asp orientation)
+                        replaceValues["$LaneID$"] = laneTuple[1]
+                        replaceValues["$LaneOrient$"] = laneTuple[2]
+                    else:
+                        print("D2: " + str(veh_laneID))
+                        replaceValues["$LaneID$"] = "_"
+                        replaceValues["$LaneOrient$"] = "_"
 
-                # X,Y Position
-                #posXY = veh_pos.split(',')
-                replaceValues["$Position_X$"] = str(round(veh_pos[0],5))
-                replaceValues["$Position_Y$"] = str(round(veh_pos[1],5))
+                    # X,Y Position
+                    #posXY = veh_pos.split(',')
+                    replaceValues["$Position_X$"] = str(round(veh_pos[0],5))
+                    replaceValues["$Position_Y$"] = str(round(veh_pos[1],5))
 
-                veh_signals = traci.vehicle.getSignals(veh_id)
-                veh_lane = str(traci.vehicle.getLaneID(veh_id)) + ";" + str(round(traci.vehicle.getLanePosition(veh_id), 4))
+                    veh_signals = traci.vehicle.getSignals(veh_id)
+                    veh_lane = str(traci.vehicle.getLaneID(veh_id)) + ";" + str(round(traci.vehicle.getLanePosition(veh_id), 4))
 
-                #print("Speed ", veh_id, ": ", veh_speed, " m/s")
-                #print("EdgeID of veh ", veh_id, ": ", traci.vehicle.getRoadID(veh_id))
-                #print('Distance ', veh_id, ": ", traci.vehicle.getDistance(veh_id), " m")
+                    #print("Speed ", veh_id, ": ", veh_speed, " m/s")
+                    #print("EdgeID of veh ", veh_id, ": ", traci.vehicle.getRoadID(veh_id))
+                    #print('Distance ', veh_id, ": ", traci.vehicle.getDistance(veh_id), " m")
 
-                # Speed
-                msg1 = templ_vehicles
-                for key, val in replaceValues.items():
-                    msg1 = msg1.replace(key,val)
-                # print(msg1)
-                yield msg1
+                    # Speed
+                    msg1 = templ_vehicles
+                    for key, val in replaceValues.items():
+                        msg1 = msg1.replace(key,val)
+                    # print(msg1)
+                    yield msg1
 
-                #msg1a = "speed(" + str(self.step2) + "," + str(veh_id) + "," + str(veh_speed) + ") ."
-                #yield msg1a
+                    #msg1a = "speed(" + str(self.step2) + "," + str(veh_id) + "," + str(veh_speed) + ") ."
+                    #yield msg1a
 
-            # Lanes
-            lane_id_list = traci.lane.getIDList()
+                # Lanes
+                lane_id_list = traci.lane.getIDList()
 
-            # Traffic lights
-            tl_id_list = traci.trafficlight.getIDList()
+                # Traffic lights
+                tl_id_list = traci.trafficlight.getIDList()
 
-            print("Intersections with TLs: " +  str(len(tl_id_list)))
+                print("Intersections with TLs: " +  str(len(tl_id_list)))
 
-            # Group of traffic lights
-            for intersID in tl_id_list:
+                # Group of traffic lights
+                for intersID in tl_id_list:
 
-                msg2 = templ_TLs.replace("$IntersectionID$",str(intersID))
-                msg2_Childs = ""
+                    msg2 = templ_TLs.replace("$IntersectionID$",str(intersID))
+                    msg2_Childs = ""
 
-                hasChildTemplate = False
-                if(self.TEMPL_PLACEHOLDER_CHILDS in msg2):
-                    hasChildTemplate = True
-
-
-                replaceValues2 = {}
-                tlIDcheck = {}
-                #replaceValues2["$IntersectionID$"] = str(intersID)
-                replaceValues2["$Timestamp$"] = str(self.step)
-
-                # Get signals for one intersection
-                tl_states = traci.trafficlight.getRedYellowGreenState(intersID)
-                #msg3 = "tlPhase(" + str(self.step2) + "," + str(intersID) + "," + tl_states + ")"
-                #print(msg3)
-
-                if(intersID in self.rows_pos):
-                    row_pos_values = self.rows_pos[intersID]
-
-                    # Find tlight for position
-                    for rowPosDict in row_pos_values: # row_pos is at tuple (tlid positions)
-                        tlID = rowPosDict["lane"]
-                        tlPositions = rowPosDict["pos"]
-                        #print(str(tlID) + str(tlPositions))
+                    hasChildTemplate = False
+                    if(self.TEMPL_PLACEHOLDER_CHILDS in msg2):
+                        hasChildTemplate = True
 
 
-                        for i in range(0, len(tl_states)): # each char is one signal state
+                    replaceValues2 = {}
+                    tlIDcheck = {}
+                    #replaceValues2["$IntersectionID$"] = str(intersID)
+                    replaceValues2["$Timestamp$"] = str(self.step)
 
-                            tlState = tl_states[i]
-                            if str(i+1) in tlPositions:
-                                replaceValues2["$TrafficLightID$"] = str(tlID)
-                                replaceValues2["$SignalState$"] = str(tlState)
+                    # Get signals for one intersection
+                    tl_states = traci.trafficlight.getRedYellowGreenState(intersID)
+                    #msg3 = "tlPhase(" + str(self.step2) + "," + str(intersID) + "," + tl_states + ")"
+                    #print(msg3)
 
-                                # Assure that it gets only added once
-                                if (tlID in tlIDcheck):
-                                    continue
+                    if(intersID in self.rows_pos):
+                        row_pos_values = self.rows_pos[intersID]
 
-                                if(hasChildTemplate):
-                                    msg2_Temp = templ_TLs_Child
-
-                                    for key, val in replaceValues2.items():
-                                        msg2_Temp = msg2_Temp.replace(key,val)
-
-                                    if(len(msg2_Childs) > 0):
-                                        msg2_Childs = msg2_Childs + ","
-                                    msg2_Childs = msg2_Childs + msg2_Temp
-                                else:
-                                    msg3 = msg2
-                                    for key, val in replaceValues2.items():
-                                        msg3 = msg3.replace(key,val)
-                                    yield msg3
-
-                                tlIDcheck[tlID] = ""
+                        # Find tlight for position
+                        for rowPosDict in row_pos_values: # row_pos is at tuple (tlid positions)
+                            tlID = rowPosDict["lane"]
+                            tlPositions = rowPosDict["pos"]
+                            #print(str(tlID) + str(tlPositions))
 
 
-                # Case with child template (e.g., RDF)
-                if(hasChildTemplate):
-                    msg2 = msg2.replace(self.TEMPL_PLACEHOLDER_CHILDS, str(msg2_Childs))
-                    yield msg2
-                # Case with single template (e.g., ASP) is handled in loop
+                            for i in range(0, len(tl_states)): # each char is one signal state
+
+                                tlState = tl_states[i]
+                                if str(i+1) in tlPositions:
+                                    replaceValues2["$TrafficLightID$"] = str(tlID)
+                                    replaceValues2["$SignalState$"] = str(tlState)
+
+                                    # Assure that it gets only added once
+                                    if (tlID in tlIDcheck):
+                                        continue
+
+                                    if(hasChildTemplate):
+                                        msg2_Temp = templ_TLs_Child
+
+                                        for key, val in replaceValues2.items():
+                                            msg2_Temp = msg2_Temp.replace(key,val)
+
+                                        if(len(msg2_Childs) > 0):
+                                            msg2_Childs = msg2_Childs + ","
+                                        msg2_Childs = msg2_Childs + msg2_Temp
+                                    else:
+                                        msg3 = msg2
+                                        for key, val in replaceValues2.items():
+                                            msg3 = msg3.replace(key,val)
+                                        yield msg3
+
+                                    tlIDcheck[tlID] = ""
 
 
+                    # Case with child template (e.g., RDF)
+                    if(hasChildTemplate):
+                        msg2 = msg2.replace(self.TEMPL_PLACEHOLDER_CHILDS, str(msg2_Childs))
+                        yield msg2
+                    # Case with single template (e.g., ASP) is handled in loop
 
-            #for lane_id in lane_id_list:
-                #lane_count = int(traci.lane.getLastStepVehicleNumber(lane_id))
+                #for lane_id in lane_id_list:
+                    #lane_count = int(traci.lane.getLastStepVehicleNumber(lane_id))
 
-                #if(lane_count > 0):
+                    #if(lane_count > 0):
 
-                    # Merge lanes to road
-                    #msg2 = "info(VehicleCount," + str(self.step2) + "," + str(lane_id) + "," + str(lane_count) + ")"
-                    #yield msg2
-                    #if(not ws is None):
-                        #ws.send(msg1)
-
-                    #waiting_count = int(traci.lane.getWaitingTime(lane_id))
-
-                    #if(waiting_count > 0):
-                        #msg3 = "info(WaitingTime," + str(self.step2) + "," + str(lane_id) + "," + str(waiting_count) + ")"
-                        #yield msg3
+                        # Merge lanes to road
+                        #msg2 = "info(VehicleCount," + str(self.step2) + "," + str(lane_id) + "," + str(lane_count) + ")"
+                        #yield msg2
                         #if(not ws is None):
-                        #    ws.send(msg2)
+                            #ws.send(msg1)
 
-        print("Simulation finished.")
+                        #waiting_count = int(traci.lane.getWaitingTime(lane_id))
 
-        traci.close(False) # Immediate close
+                        #if(waiting_count > 0):
+                            #msg3 = "info(WaitingTime," + str(self.step2) + "," + str(lane_id) + "," + str(waiting_count) + ")"
+                            #yield msg3
+                            #if(not ws is None):
+                            #    ws.send(msg2)
+
+            print("Simulation finished.")
+
+            traci.close(False) # Immediate close
+
+            if(not self.replay or self.stopped):
+                break
+            else:
+                print("Simulation restart.")
+                time.sleep(1)
+
         sys.stdout.flush()
 
 
@@ -388,7 +394,7 @@ def main(argv):
 
     print("Start streaming...")
 
-    for msg in player.start(0.1): # 0.1 0.5
+    for msg in player.start(1, False): # False
         print(msg)
 
     print("Stop streaming.")
