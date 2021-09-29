@@ -68,9 +68,9 @@ class RestApi():
             # input parameters
             frequency = request.args.get('frequency', default=500, type=int) # Old 10
             replay = request.args.get('replay', default=False, type=lambda v: v.lower() == 'true')
-            replayBool = False
-            if(replay=='true'):
-                replayBool = True
+            replayBool = replay # False
+            #if(replay=='true'):
+            #    replayBool = True
 
             # start broadcast messages from player (using multithreading)
             broadcast_thread = threading.Thread(
