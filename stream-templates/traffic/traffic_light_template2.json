@@ -1,6 +1,6 @@
 
           {
-          "@id": "tl:$TrafficLightID$",
+          "@id": "$TrafficLightID$",
           "@type": "sosa:Sensor",
           "sosa:madeObservation":[
            {
