@@ -35,7 +35,7 @@
                 "sosa:hasResult":{
                     "@id" : "result:GPS_$ObsID$",
                     "schema:latitude": $Position_X$,
-                    "schema:longitude": $Position_Y$
+                    "schema:longitude": $Position_Y$,
                     "its:onLaneID": $LaneID$,
                     "its:onLaneOrientation": $LaneOrient$
                 },
