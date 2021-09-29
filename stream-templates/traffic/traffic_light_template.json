@@ -1,5 +1,5 @@
     {
-        "@id": "tl:$IntersectionID$",
+        "@id": "$IntersectionID$",
         "@type": "sosa:Platform",
         "sosa:hosts":[
           $CHILDS$
