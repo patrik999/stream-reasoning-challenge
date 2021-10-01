@@ -36,8 +36,16 @@
                     "@id" : "result:GPS_$ObsID$",
                     "schema:latitude": $Position_X$,
                     "schema:longitude": $Position_Y$,
-                    "its:onLaneID": "$LaneID$",
-                    "its:onLaneOrientation": "$LaneOrient$"
+                    "its:onLane": {
+                      "@id": "$LaneID_From$",
+                      "@type": ["its:node"],
+                      "its:link": [
+                        {
+                           "its:linkedTo": "$LaneID_To$",
+                           "its:orientation": "$LaneOrient$"
+                        }
+                      ]
+                    }
                 },
                 "sosa:resultTime": "$Timestamp$"
             }
