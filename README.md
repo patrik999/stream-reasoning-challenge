@@ -43,9 +43,9 @@ where `TYPE` has to be replaced with the type of stream, currently `sumo` is pro
 has to be replaced by the output format of send messages, currently `traffic-json`, `traffic-nt`,
 and `traffic-asp` are choosable.
 
-- Start stream generation: `/start`
+- Start stream generation: `/start?frequency=500&replay=true`
 
-- Modify update frequency of a stream: `/modify?frequency=0.1`
+- Modify update frequency of a stream: `/modify?frequency=250`
 
 - Stop stream generation: `/stop`
 
