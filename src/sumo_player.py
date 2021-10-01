@@ -33,6 +33,7 @@ class SumoPlayer(AbstractPlayer):
     step_ratio = 3
     #steps_limit = 250
     stopped = False
+    lane_length = 100
 
     #sleep = 1.0
     config_name = ""
@@ -181,16 +182,26 @@ class SumoPlayer(AbstractPlayer):
                     # Lane id needs to be map to asp encoding
                     #veh_laneID = str(traci.vehicle.getLaneID(veh_id))
                     veh_laneID = str(traci.vehicle.getRoadID(veh_id))
-
-
-                    if veh_laneID in self.lane_mappings:
-                        laneTuple = self.lane_mappings[veh_laneID] # (sumo id, asp id, asp orientation)
-                        replaceValues["$LaneID$"] = laneTuple[1]
-                        replaceValues["$LaneOrient$"] = laneTuple[2]
+                    veh_lanePos = float(traci.vehicle.getLanePosition(veh_id))
+                    # Map lanePos to 0 (start-middle) or 1 (middle-end) of lanes
+                    veh_lanePos01 = 0 # Default is begin of
+                    if(self.lane_length / 2) <= veh_lanePos:
+                        veh_lanePos01 = 0
                     else:
-                        print("D2: " + str(veh_laneID))
-                        replaceValues["$LaneID$"] = "_"
-                        replaceValues["$LaneOrient$"] = "_"
+                        veh_lanePos01 = 1
+
+                    lanePosKey = veh_laneID + "#" + str(veh_lanePos01)
+                    print("D2: " + lanePosKey)
+                    if lanePosKey in self.lane_mappings:
+                        laneTuple = self.lane_mappings[lanePosKey] # (sumo id, asp id, asp orientation)
+                        replaceValues["$LaneID_From$"] = laneTuple[1]
+                        replaceValues["$LaneID_To$"] = laneTuple[2]
+                        replaceValues["$LaneOrient$"] = laneTuple[3]
+                    else:
+                        print("No lane mapping: " + str(lanePosKey))
+                        replaceValues["$LaneID_From$"] = "" # "_"
+                        replaceValues["$LaneID_To$"] = "" # "_"
+                        replaceValues["$LaneOrient$"] = ""
 
                     # X,Y Position
                     #posXY = veh_pos.split(',')
@@ -366,13 +377,15 @@ class SumoPlayer(AbstractPlayer):
 
                 if(predName == "lmap"):
 
-                        landIdSumo = lineDataSplit[0].strip()
-                        lineTuple = (landIdSumo, lineDataSplit[1].strip(), lineDataSplit[2].strip()) # sumo_id, asp_id, asp_dir
+                        laneIdSumo = lineDataSplit[0].strip()
+                        lanePosIdSumo = lineDataSplit[1].strip()
+                        laneKey = laneIdSumo + "#" + str(lanePosIdSumo)
+                        laneTuple = (laneKey, lineDataSplit[2].strip(), lineDataSplit[3].strip(), lineDataSplit[4].strip())
 
-                        if not landIdSumo in self.lane_mappings:
-                            self.lane_mappings[landIdSumo] = lineTuple
+                        if not laneKey in self.lane_mappings:
+                            self.lane_mappings[laneKey] = laneTuple
 
-        print("D1: " + str(self.lane_mappings))
+        #print("D1: " + str(self.lane_mappings))
 
 
 
@@ -394,7 +407,9 @@ def main(argv):
 
     print("Start streaming...")
 
-    for msg in player.start(1, False): # False
+    time.sleep(2)
+
+    for msg in player.start(1, True): # False
         print(msg)
 
     print("Stop streaming.")
