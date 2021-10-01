@@ -199,9 +199,9 @@ class SumoPlayer(AbstractPlayer):
                         replaceValues["$LaneOrient$"] = laneTuple[3]
                     else:
                         print("No lane mapping: " + str(lanePosKey))
-                        replaceValues["$LaneID_From$"] = "" # "_"
-                        replaceValues["$LaneID_To$"] = "" # "_"
-                        replaceValues["$LaneOrient$"] = ""
+                        replaceValues["$LaneID_From$"] = "_" # "_"
+                        replaceValues["$LaneID_To$"] = "_" # "_"
+                        replaceValues["$LaneOrient$"] = "_"
 
                     # X,Y Position
                     #posXY = veh_pos.split(',')
