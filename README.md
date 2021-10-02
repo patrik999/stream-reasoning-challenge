@@ -63,7 +63,7 @@ You should develop your own client using our **REST API** for triggering events 
 1. Install dependencies:
 
 ```shell
-python3 -m pip install websocket-client requests
+python3 -m pip install websocket-client requests pyyaml
 ```
 
 2. Go to folder `example-client` and run:
