@@ -53,7 +53,7 @@ Note that the arguments in  `/init` correspond to keys in `config.yaml`.
 Here is an example for the initialization and start of a SUMO traffic stream that sends RDF messages in JSON:
 
 `http://192.168.0.206:59125/init?streamtype=sumo&templatetype=traffic-json`, then
-`http://192.168.0.206:59125/start`
+`http://192.168.0.206:59125/start?frequency=500&replay=true`
 
 
 ### Client side
