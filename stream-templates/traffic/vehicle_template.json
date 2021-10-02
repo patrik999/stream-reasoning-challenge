@@ -1,7 +1,6 @@
     {
         "@id": "vehicle:$VehicleID$",
-        "@type": "sosa:Platform",
-        "its:vehModel": "$Type$",
+        "@type": ["sosa:Platform", "its:$Type$"],
         "sosa:hosts":[
          {
           "@id": "vehicle:SensorMove_$VehicleID$",
