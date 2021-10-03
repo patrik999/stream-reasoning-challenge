@@ -36,8 +36,9 @@
                     "schema:latitude": $Position_X$,
                     "schema:longitude": $Position_Y$,
 		    "its:onLane": {
-                      "fromNode": "$LaneID_From$",
-                      "toNode": "$LaneID_To$"
+                      "its:fromNode": "$LaneID_From$",
+                      "its:toNode": "$LaneID_To$",
+		      "its:orientation": "$LaneOrient$"
                     }
                 },
                 "sosa:resultTime": "$Timestamp$"
