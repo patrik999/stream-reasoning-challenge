@@ -22,7 +22,7 @@
       "@id": "its:carB",
       "@type": "rdfs:Class",
       "rdfs:label": "Cars of Type B",
-      "rdfs:subClassOf": "its:miniCar"
+      "rdfs:subClassOf": "its:familyCar"
     },
     {
       "@id": "its:carC",
