@@ -15,7 +15,7 @@ streams:
     simple:
         simpleStream: null
     objdet:
-        streamKitti1: stream-log-files/objdet/kitti/yolo4/nt/
+        streamKitti1: stream-log-files/kitti/2011_09_26_drive_0015
 player:
     vissim:
         class: VissimPlayer
@@ -27,7 +27,7 @@ player:
         class: SimplePlayer
         path: src/simple_player.py
     objdet:
-        class: ObjDetPlayer
+        class: ObjectDetection
         path: src/objdet_player.py
 templates:
     traffic-json:
@@ -44,5 +44,8 @@ templates:
         subStreamTrafficLights: stream-templates/traffic/traffic_light_template.asp
         backgroundKB: stream-log-files/sumo/traffics_kb_small.asp
     kitti-json:
+        format: json
         backgroundKB: stream-log-files/kitti/traffics_kb_small.json
-        
+    kitti-n3:
+        format: n3
+        backgroundKB: stream-log-files/kitti/traffics_kb_small.json

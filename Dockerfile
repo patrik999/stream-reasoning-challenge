@@ -12,18 +12,19 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 	PIP3_INSTALL="python3 -m pip --no-cache-dir install --upgrade" && \
 	apt update && \
 	DEBIAN_FRONTEND=noninteractive $APT_INSTALL \
-		python3 \
-		python3-pip \
-		software-properties-common \
-		&& \
+	python3 \
+	python3-pip \
+	software-properties-common \
+	&& \
 
 	$PIP3_INSTALL \
-		flask \
-		pyyaml \
-		websocket_server \
-		websocket-client \
-		requests \
-		&& \
+	flask \
+	pyyaml \
+	websocket_server \
+	websocket-client \
+	requests \
+	rdflib \
+	&& \
 	ldconfig && \
 	apt-get clean && \
 	apt-get autoremove

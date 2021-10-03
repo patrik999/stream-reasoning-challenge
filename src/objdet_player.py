@@ -7,16 +7,20 @@ import time
 
 class ObjectDetection(AbstractPlayer):
     observations = {}
+    format_data = "n3"
 
     def __init__(self, stream_id, template_dictionary):
         super().__init__(stream_id, template_dictionary)
+
+        # check format type
+        self.format_data = template_dictionary["format"]
 
         # read the log file and convert to a list of observations
         od = open(self.streamID+".od")
         ss = open(self.streamID+".sensor")
         detections = json.load(od)
         sensors = json.load(ss)
-        observations = {}
+        #self.observations = {}
 
         # {"image_id": "0000000058", "category_id": 7, "label": "truck","bbox": [175.09146241137856, 182.35644541288679, 48.0617183258659, 26.0792264812871], "score": "28.61"},
         for detection in detections:
@@ -26,39 +30,41 @@ class ObjectDetection(AbstractPlayer):
             score = detection['score']
             result = {'label': label, 'bbox': bbox, 'score': score}
 
-            observation = observations.get(image_id)
-            if observation is None:
+            #observation = self.observations.get(image_id)
+            # if observation is None:
+            if image_id not in self.observations:
                 observation = Observation(image_id)
                 observation.add(result)  # adding object detection result
 
                 #{"lat": "49.019702312103", "lon": "8.4435252928258", "alt": "114.12394714355", "roll": "-0.023792", "pitch": "0.012376", "vf": "17.078529727139", "ax": "-0.45926757222713", "ay": "-0.24090805193072"}
                 observation.set_sensor(sensors[image_id])  # adding sensor data
 
-                observations[image_id] = observation
+                self.observations[image_id] = observation
             else:
                 observation.add(result)
 
-        self.observations = observations
+        #self.observations = observations
 
-    def start(self, freq_in_ms):
+    def start(self, freq_in_ms, replay=False):
+
         for key in sorted(self.observations):
             graph = Graph()
             observation = self.observations[key]
             graph = observation.get_graph(graph)
             #graph.serialize(destination='output.nt', format='n3')
-            message = str(graph.serialize(format=self.templateID))
+            message = str(graph.serialize(format=self.format_data))
             message = message.replace('\\n', '\n').replace(
                 'b\'', '').replace('\'', '')
-            print(message)
+            # print(message)
 
-            # yield message
+            yield message
             time.sleep(self.frequency / 1000.0)
 
     def modify(self, freq_in_ms):
         pass
 
 
-class Observation:
+class Observation():
     id = ''
     results = []
 
@@ -72,6 +78,9 @@ class Observation:
 
     def set_sensor(self, sensor):
         self.sensor = sensor
+
+    def length(self):
+        return self.results.length
 
     def get_graph(self, graph):
         SR_NAMESPACE = 'http://stream-reasoning-challenge.org'
@@ -98,6 +107,15 @@ class Observation:
         graph.add((yolo_v4_iri, RDFS.label, Literal('YoloV4')))
         graph.add((frame_iri, RDF.type, image2d_iri))
         graph.add((detection_class_iri, RDFS.subClassOf, SOSA.Result))
+
+        lat = self.sensor["lat"]
+        lon = self.sensor["lon"]
+        alt = self.sensor["alt"]
+        roll = self.sensor["roll"]
+        pitch = self.sensor["pitch"]
+        vf = self.sensor["vf"]
+        ax = self.sensor["ax"]
+        ay = self.sensor["ay"]
 
         result_id = 0
         for result in self.results:
