@@ -1,7 +1,6 @@
     {
         "@id": "vehicle:$VehicleID$",
-        "@type": "sosa:Platform",
-        "its:vehModel": "$Type$",
+        "@type": ["sosa:Platform", "its:$Type$"],
         "sosa:hosts":[
          {
           "@id": "vehicle:SensorMove_$VehicleID$",
@@ -35,7 +34,11 @@
                 "sosa:hasResult":{
                     "@id" : "result:GPS_$ObsID$",
                     "schema:latitude": $Position_X$,
-                    "schema:longitude": $Position_Y$
+                    "schema:longitude": $Position_Y$,
+		    "its:onLane": {
+                      "fromNode": "$LaneID_From$",
+                      "toNode": "$LaneID_To$"
+                    }
                 },
                 "sosa:resultTime": "$Timestamp$"
             }

@@ -14,9 +14,12 @@ class SimplePlayer(AbstractPlayer):
         self.templateID = template_id
 
 
-    def start(self, freq_in_ms):
+    def start(self, freq_in_ms, replay):
 
         self.frequency = freq_in_ms
+        
+        if(replay==True):
+            round = 100000000
 
         for index in range(self.rounds):
             #print self.constantTexts[index]

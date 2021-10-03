@@ -2,6 +2,7 @@ import threading
 from custom_websocket_server import WSServer
 from flask import Flask, json, request, abort
 from runpy import run_path
+from distutils.util import strtobool
 import os
 ROOT_PATH = os.path.abspath(os.curdir) + "/"
 
@@ -63,13 +64,17 @@ class RestApi():
             return json.dumps({"knowledge base": "example"}), 200
 
         @self.api.route('/start', methods=['GET'])
-        def start_route():  # usage: /start?frequency=10
+        def start_route():  # usage: /start?frequency=500
             # input parameters
-            frequency = request.args.get('frequency', default=10, type=int)
+            frequency = request.args.get('frequency', default=500, type=int) # Old 10
+            replay = request.args.get('replay', default=False, type=lambda v: v.lower() == 'true')
+            replayBool = replay # False
+            #if(replay=='true'):
+            #    replayBool = True
 
             # start broadcast messages from player (using multithreading)
             broadcast_thread = threading.Thread(
-                target=self.broadcasting_thread, args=(self.player.start(frequency), ))
+                target=self.broadcasting_thread, args=(self.player.start(frequency,replayBool), ))
             broadcast_thread.start()
 
             return json.dumps({"message": "success"}), 200
@@ -81,7 +86,7 @@ class RestApi():
 
         @self.api.route('/modify', methods=['GET'])
         def modify_route():
-            frequency = request.args.get('frequency', default=10, type=int)
+            frequency = request.args.get('frequency', default=500, type=int) # Old 10
             self.player.modify(frequency)
             return json.dumps({"message": "success"}), 200
 

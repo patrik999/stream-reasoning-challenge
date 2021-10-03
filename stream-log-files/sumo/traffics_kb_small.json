@@ -1,0 +1,385 @@
+{
+  "@context": {
+    "its"     : "http://stream-reasoning-challenge.org/its/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "sosa"    : "http://www.w3.org/ns/sosa/",
+    "ssn"     : "http://www.w3.org/ns/ssn/",
+    "schema"  : "http:/schema.org/",
+    "xsd"     : "http://www.w3.org/2001/XMLSchema#",
+    "rdfs:subClassOf": {
+      "@type": "@id"
+    }
+  },
+  "@graph":
+  [
+    {
+      "@id": "its:carA",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Cars of Type A",
+      "rdfs:subClassOf": "its:familyCar"
+    },
+    {
+      "@id": "its:carB",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Cars of Type B",
+      "rdfs:subClassOf": "its:familyCar"
+    },
+    {
+      "@id": "its:carC",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Cars of Type C",
+      "rdfs:subClassOf": "its:truck"
+    },
+    {
+      "@id": "its:carD",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Cars of Type D",
+      "rdfs:subClassOf": "its:sportsCar"
+    },
+    {
+      "@id": "its:familyCar",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Family Cars",
+      "rdfs:subClassOf": "its:persVehicle"
+    },
+    {
+      "@id": "its:sportsCar",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Sport Cars",
+      "rdfs:subClassOf": "its:persVehicle"
+    },
+    {
+      "@id": "its:truck",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Truck",
+      "rdfs:subClassOf": "its:utilVehicle"
+    },
+    {
+      "@id": "gneJ1",
+      "@type": ["sosa:Platform","its:node"],
+      "rdfs:label" : "Intersection gneJ1",
+      "sosa:hosts": [
+        {
+          "@id": "i2b",
+          "@type": "sosa:Sensor",
+          "rdfs:label" : "Traffic light for i2b",
+          "its:conflictingTL" : [ "i1b", "lnk1a" ]
+        },
+        {
+          "@id": "lnk1a",
+          "@type": "sosa:Sensor",
+          "rdfs:label" : "Traffic light for lnk1a",
+           "its:conflictingTL" : [ "i2b" ]
+        },
+        {
+          "@id": "i1b",
+          "@type": "sosa:Sensor",
+          "rdfs:label" : "Traffic light for i1b",
+           "its:conflictingTL" : [ "i2b" ]
+        }
+      ],
+      "its:link": [
+        {
+         "its:linkedTo": "lnk1a",
+         "its:orientation": "we"
+        },
+        {
+         "its:linkedTo": "o1b",
+         "its:orientation": "ew"
+        },
+        {
+         "its:linkedTo": "o2b",
+         "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "gneJ13",
+      "@type": ["sosa:Platform","its:node"],
+      "rdfs:label" : "Intersection gneJ13",
+      "sosa:hosts": [
+        {
+          "@id": "i3b",
+          "@type": "sosa:Sensor",
+          "rdfs:label" : "Traffic light for i3b",
+          "its:conflictingTL" : [ "i4b", "lnk1c" ]
+        },
+        {
+          "@id": "i4b",
+          "@type": "sosa:Sensor",
+          "rdfs:label" : "Traffic light for i4b",
+          "its:conflictingTL" : [ "i3b", "i5b" ]
+        },
+        {
+          "@id": "i5b",
+          "@type": "sosa:Sensor",
+          "rdfs:label" : "Traffic light for i5b",
+          "its:conflictingTL" : [ "i4b", "lnk1c" ]
+        },
+        {
+          "@id": "lnk1c",
+          "@type": "sosa:Sensor",
+          "rdfs:label" : "Traffic light for lnk1c",
+          "its:conflictingTL" : [ "i5b", "i3b" ]
+        }
+      ],
+      "its:link": [
+        {
+         "its:linkedTo": "o5b",
+         "its:orientation": "we"
+        },
+        {
+         "its:linkedTo": "o3b",
+         "its:orientation": "we"
+        },
+        {
+         "its:linkedTo": "o4b",
+         "its:orientation": "we"
+        },
+        {
+         "its:linkedTo": "lnk1c",
+         "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "i1",
+      "@type": ["its:node"],
+      "rdfs:label" : "Input node i1",
+      "its:link": [
+        {
+           "its:linkedTo": "i1b",
+           "its:orientation": "we"
+        }
+      ]
+    },
+    {
+      "@id": "o1b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node o1b",
+      "its:link": [
+        {
+           "its:linkedTo": "o1",
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "o1",
+      "@type": ["its:node"],
+      "rdfs:label" : "Output node o1",
+    },
+    {
+      "@id": "i1b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node i1b",
+      "its:link": [
+        {
+           "its:linkedTo": "gneJ1",
+           "its:orientation": "we"
+        }
+      ]
+    },
+    {
+      "@id": "i2",
+      "@type": ["its:node"],
+      "rdfs:label" : "Input node i2",
+      "its:link": [
+        {
+           "its:linkedTo": "i2b",
+           "its:orientation": "we"
+        }
+      ]
+    },
+    {
+      "@id": "i2b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node i2b",
+      "its:link": [
+        {
+           "its:linkedTo": "gneJ1",
+           "its:orientation": "we"
+        }
+      ]
+    },
+    {
+      "@id": "o2b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node o2b",
+      "its:link": [
+        {
+           "its:linkedTo": "o2",
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "lnk1a",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node lnk1a",
+      "its:link": [
+        {
+           "its:linkedTo": "lnk1b",
+           "its:orientation": "we",
+           "its:maxSpeed": 13
+        },
+        {
+           "its:linkedTo": "gneJ1",
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "lnk1b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node lnk1b",
+      "its:link": [
+        {
+           "its:linkedTo": "lnk1a",
+           "its:orientation": "ew",
+           "its:maxSpeed": 13
+        },
+        {
+           "its:linkedTo": "lnk1c",
+           "its:orientation": "we",
+           "its:maxSpeed": 13
+        }
+      ]
+    },
+    {
+      "@id": "lnk1c",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node lnk1c",
+      "its:link": [
+        {
+           "its:linkedTo": "gneJ13",
+           "its:orientation": "we"
+        },
+        {
+           "its:linkedTo": "lnk1b",
+           "its:maxSpeed": 13,
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "i3",
+      "@type": ["its:node"],
+      "rdfs:label" : "Input node i3",
+      "its:link": [
+        {
+           "its:linkedTo": "i3b",
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "i3b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node i3b",
+      "its:link": [
+        {
+           "its:linkedTo": "gneJ13",
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "i4",
+      "@type": ["its:node"],
+      "rdfs:label" : "Input node i4",
+      "its:link": [
+        {
+           "its:linkedTo": "i4b",
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "i4b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node i4b",
+      "its:link": [
+        {
+           "its:linkedTo": "gneJ13",
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "i5",
+      "@type": ["its:node"],
+      "rdfs:label" : "Input node i5",
+      "its:link": [
+        {
+           "its:linkedTo": "i5b",
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "i5b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node i5b",
+      "its:link": [
+        {
+           "its:linkedTo": "gneJ13",
+           "its:orientation": "ew"
+        }
+      ]
+    },
+    {
+      "@id": "o3b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node o3b",
+      "its:link": [
+        {
+           "its:linkedTo": "o3",
+           "its:orientation": "we"
+        }
+      ]
+    },
+    {
+      "@id": "o4b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node o4b",
+      "its:link": [
+        {
+           "its:linkedTo": "o4",
+           "its:orientation": "we"
+        }
+      ]
+    },
+    {
+      "@id": "o5b",
+      "@type": ["its:node"],
+      "rdfs:label" : "Node o5b",
+      "its:link": [
+        {
+           "its:linkedTo": "o5",
+           "its:orientation": "we"
+        }
+      ]
+    },
+    {
+      "@id": "o2",
+      "@type": ["its:node"],
+      "rdfs:label" : "Output node o3",
+    },
+    {
+      "@id": "o3",
+      "@type": ["its:node"],
+      "rdfs:label" : "Output node o3",
+    },
+    {
+      "@id": "o4",
+      "@type": ["its:node"],
+      "rdfs:label" : "Output node o4",
+    },
+    {
+      "@id": "o5",
+      "@type": ["its:node"],
+      "rdfs:label" : "Output node o5",
+    }
+  ]
+}

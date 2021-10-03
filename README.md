@@ -3,7 +3,7 @@
 Official repository of the Stream Reasoning Challenge 2021,
 part of the [Stream Reasoning Workshop 2021](http://streamreasoning.org/events/srw2021).
 
-All the details of the hackathon are given in the SR_Hackaton_2021_Overview.pdf document.
+All the details of the hackathon are given in the [overview document](SR_Hackaton_2021.pdf).
 
 ## USAGE
 
@@ -43,9 +43,9 @@ where `TYPE` has to be replaced with the type of stream, currently `sumo` is pro
 has to be replaced by the output format of send messages, currently `traffic-json`, `traffic-nt`,
 and `traffic-asp` are choosable.
 
-- Start stream generation: `/start`
+- Start stream generation: `/start?frequency=500&replay=true`
 
-- Modify update frequency of a stream: `/modify?frequency=0.1`
+- Modify update frequency of a stream: `/modify?frequency=250`
 
 - Stop stream generation: `/stop`
 
@@ -53,7 +53,7 @@ Note that the arguments in  `/init` correspond to keys in `config.yaml`.
 Here is an example for the initialization and start of a SUMO traffic stream that sends RDF messages in JSON:
 
 `http://192.168.0.206:59125/init?streamtype=sumo&templatetype=traffic-json`, then
-`http://192.168.0.206:59125/start`
+`http://192.168.0.206:59125/start?frequency=500&replay=true`
 
 
 ### Client side
@@ -63,7 +63,7 @@ You should develop your own client using our **REST API** for triggering events 
 1. Install dependencies:
 
 ```shell
-python3 -m pip install websocket-client requests
+python3 -m pip install websocket-client requests pyyaml
 ```
 
 2. Go to folder `example-client` and run:

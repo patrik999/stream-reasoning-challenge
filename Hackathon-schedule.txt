@@ -1,0 +1,11 @@
+Hackathon Schedule:
+
+09:00 - 09:45 Introduction and introducing
+09:45 - 10:15 Discussion of scenarios and tasks
+10:15 - 10:30 Coffee break
+10:30 - 13:00 Hackathon part 1
+13:00 - 14:00 Lunch
+14:00 - 16:00 Hackathon part 2
+16:15 - 16:30 Coffee break
+16:30 - 18:00 Hackathon part 3
+18:00 - 18:45 Presentations and evaluation
