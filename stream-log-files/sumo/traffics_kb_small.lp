@@ -93,12 +93,14 @@ vehType(carA) . % VW
 vehType(carB) . % Fiat
 vehType(carC) . % Bus
 vehType(carD) . % BMW
+vehType(carE) . % Mercedes
 
 % Vehicle classification
 isSubType(carA,familyCar) .
 isSubType(carB,familyCar) .
 isSubType(carC,truck) .
 isSubType(carD,sportsCar) .
+isSubType(carE,sportsCar) .
 isSubType(familyCar,persVehicle) .
 isSubType(sportsCar,persVehicle) .
 isSubType(bus,utilVehicle) .
