@@ -17,7 +17,7 @@ class PerceptionStreamPlayer(AbstractPlayer):
         # check format type
         self.format_data = template_dictionary["format"]
         if "context" in template_dictionary:
-            context = json.load(open(template_dictionary["context"]))
+            self.context = json.load(open(template_dictionary["context"]))
 
         # read the log file and convert to a list of observations
         od = open(self.streamID+".json")

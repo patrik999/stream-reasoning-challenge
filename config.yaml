@@ -50,10 +50,10 @@ templates:
     perceptionstream-jsonld:
         format: json-ld
         context: stream-log-files/perceptionstream/context.json
-        backgroundKB: stream-log-files/perceptionstream/traffics_kb_small.json
+        backgroundKB: stream-log-files/perceptionstream/kb.json
     perceptionstream-n3:
         format: n3
-        backgroundKB: stream-log-files/perceptionstream/traffics_kb_small.json
+        backgroundKB: stream-log-files/perceptionstream/kb.n3
     perceptionstream-nt:
         format: nt
-        backgroundKB: stream-log-files/perceptionstream/traffics_kb_small.json
+        backgroundKB: stream-log-files/perceptionstream/kb.nt

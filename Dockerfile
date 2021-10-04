@@ -24,7 +24,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 	websocket-client \
 	requests \
 	rdflib \
-	rdflib-jsonld \
+	rdflib-jsonld==0.6.1 \
 	&& \
 	ldconfig && \
 	apt-get clean && \
