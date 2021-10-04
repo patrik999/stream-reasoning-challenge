@@ -11,7 +11,7 @@ All the details of the hackathon are given in the [overview document](SR_Hackato
 
 Install docker on your system: https://docs.docker.com/get-docker/
 
-### Server side
+### Server Setup
 
 1. Clone this git
 
@@ -68,7 +68,7 @@ Here is an example for the initialization and start of a SUMO traffic stream tha
     -   Open the `<url>` on a browser.
     -   Call by using programming language library such as Python, Java.
 
-### Client side
+### Client Setup
 
 You should develop your own client using our **REST API** for triggering events such as **init**, **start**, **stop**. Bellow is our example for a basic client, you could modify this example to meet your need.
 
