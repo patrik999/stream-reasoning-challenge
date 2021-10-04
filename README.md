@@ -7,11 +7,13 @@ All the details of the hackathon are given in the [overview document](SR_Hackato
 
 ## USAGE
 
+The main idea is to use a server to generate a stream of data and then stream the data to the client through a WebSocket. The server is also acting as a web server to control the server through our provided REST API.
+
 ### Requirements
 
 Install docker on your system: https://docs.docker.com/get-docker/
 
-### Server side
+### Server Setup
 
 1. Clone this git
 
@@ -68,9 +70,11 @@ Here is an example for the initialization and start of a SUMO traffic stream tha
     -   Open the `<url>` on a browser.
     -   Call by using programming language library such as Python, Java.
 
-### Client side
+### Client Setup
 
 You should develop your own client using our **REST API** for triggering events such as **init**, **start**, **stop**. Bellow is our example for a basic client, you could modify this example to meet your need.
+
+#### Demo Python Client
 
 1. Install dependencies:
 
@@ -83,3 +87,15 @@ python3 -m pip install websocket-client requests pyyaml
 ```shell
 python3 client.py
 ```
+
+#### Custom Client
+
+You could develop your own client base on 2 step below:
+
+1. Call the Initialize API from above to get back the Websocket URL, return message is an JSON has format as bellow
+
+```
+{"websocket_url": "ws://0.0.0.0:8889"}
+```
+
+2. Connect to the websocket above and listen for message from the server.
