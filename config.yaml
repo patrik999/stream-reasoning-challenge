@@ -60,7 +60,3 @@ templates:
     perceptionstream-asp:
         format: asp
         backgroundKB: stream-log-files/perceptionstream/kb.asp
-<<<<<<< HEAD
-=======
-        
->>>>>>> ccb2a4dd2fef564e254cef2885b54100f5507310
