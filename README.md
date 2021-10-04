@@ -72,6 +72,8 @@ Here is an example for the initialization and start of a SUMO traffic stream tha
 
 You should develop your own client using our **REST API** for triggering events such as **init**, **start**, **stop**. Bellow is our example for a basic client, you could modify this example to meet your need.
 
+#### Demo Python Client
+
 1. Install dependencies:
 
 ```shell
@@ -83,3 +85,15 @@ python3 -m pip install websocket-client requests pyyaml
 ```shell
 python3 client.py
 ```
+
+#### Custom Client
+
+You could develop your own client base on 2 step below:
+
+1. Call the Initialize API from above to get back the Websocket URL, return message is an JSON has format as bellow
+
+```
+{"websocket_url": "ws://0.0.0.0:8889"}
+```
+
+2. Connect to the websocket above and listen for message from the server.
