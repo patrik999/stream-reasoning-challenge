@@ -7,7 +7,7 @@ All the details of the hackathon are given in the [overview document](SR_Hackato
 
 ## USAGE
 
-The main idea is that we are using a server to generate stream of data, then stream the data to the client through websocket. The server is also acting as a webserver, so you could control the server throuh our provided REST API.
+The main idea is to use a server to generate a stream of data and then stream the data to the client through a WebSocket. The server is also acting as a web server to control the server through our provided REST API.
 
 ### Requirements
 
