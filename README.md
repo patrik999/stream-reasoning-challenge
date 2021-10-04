@@ -7,6 +7,10 @@ All the details of the hackathon are given in the [overview document](SR_Hackato
 
 ## USAGE
 
+### Requirements
+
+Install docker on your system: https://docs.docker.com/get-docker/
+
 ### Server side
 
 1. Clone this git
@@ -53,10 +57,16 @@ The following is a list of possible REST-API calls:
 -   Stop stream generation: `http://0.0.0.0:8888/stop`
 
 Note that the arguments in `http://0.0.0.0:8888/init` correspond to keys in `config.yaml`.
+
 Here is an example for the initialization and start of a SUMO traffic stream that sends RDF messages in JSON:
 
 `http://0.0.0.0:8888/init?streamtype=sumo&templatetype=traffic-json`, then
 `http://0.0.0.0:8888/start?frequency=500&replay=true`
+
+-   For calling API, there is few ways:
+    -   Call by using `curl` in Command Line Interface: `curl --request GET "<url>"`
+    -   Open <url> on a browser.
+    -   Call by using programming language library such as Python, Java.
 
 ### Client side
 
