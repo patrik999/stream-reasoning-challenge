@@ -10,10 +10,11 @@ class PerceptionStreamPlayer(AbstractPlayer):
     observations = {}
     format_data = "n3"
     context = None
+    templates = {}
 
     def __init__(self, stream_id, template_dictionary):
         super().__init__(stream_id, template_dictionary)
-
+        self.templates = template_dictionary
         # check format type
         self.format_data = template_dictionary["format"]
         if "context" in template_dictionary:
@@ -87,6 +88,14 @@ class PerceptionStreamPlayer(AbstractPlayer):
 
         self.stopped = True
         print("Player is stopped")
+
+    def getkb(self):
+        if "backgroundKB" in self.templates:
+            kbName = self.templates["backgroundKB"]
+            kbText = open(kbName).read()
+            return kbText
+        else:
+            return ""
 
 
 class Observation():
