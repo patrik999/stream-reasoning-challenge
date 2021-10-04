@@ -68,8 +68,13 @@ class PerceptionStreamPlayer(AbstractPlayer):
                         'b\'', '').replace('\'', '')
                     for line in tmp.split("\n"):
                         if line:
-                            line=line.split("^^")[0]+" ."
-                            line=line.split("@")[0]+" ."
+                            drop=line.split("^^")
+                            if len(drop)>1:
+                                line=drop[0] + " ."
+                            drop=line.split("@")
+                            if len(drop)>1:
+                                line=drop[0] + " ."
+                            
                             message+="stream("+line.replace('<','\"<').replace('>','>\"').replace('\" \"','\",\"').replace(' .',') .')+'\n'
                 else:
                     # graph.serialize(destination='output.nt', format='n3')
