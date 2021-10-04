@@ -29,6 +29,7 @@ Once you see the output as below, it means the server is ready!
 > INFO:werkzeug: \* Running on http://172.18.0.2:8888/ (Press CTRL+C to quit)
 
 **Note**: For any server code modification, rebuild the system by running:
+
 ```shell
 run `docker-compose up --build`
 ```
@@ -38,23 +39,23 @@ run `docker-compose up --build`
 Stream generation needs first to be initialized, then a new stream can be (re-)started, stopped, and the update frequency modified.
 The following is a list of possible REST-API calls:
 
-- Initialize stream generation: `http://0.0.0.0:8888/init?streamtype=TYPE&templatetype=TEMPLATE`
-  - Where `TYPE` has to be replaced with the type of stream. Current support are `sumo` and `perception`
-  - Where `TEMPLATE` has to be replaced by the output format of send messages. For `sumo`, currently `traffic-json`, `traffic-nt`,
-and `traffic-asp` are choosable. For `perception`, currently `perception-n3` and `perception-nt` are chooseable.
+-   Initialize stream generation: `http://0.0.0.0:8888/init?streamtype=TYPE&templatetype=TEMPLATE`
 
-- Start stream generation: `http://0.0.0.0:8888/start?frequency=500&replay=true`
+    -   Where `TYPE` has to be replaced with the type of stream. Current support are `sumo` and `perceptionstream`
+    -   Where `TEMPLATE` has to be replaced by the output format of send messages. For `sumo`, currently `traffic-json`, `traffic-nt`,
+        and `traffic-asp` are choosable. For `perceptionstream`, currently `perceptionstream-n3` and `perceptionstream-nt` are chooseable.
 
-- Modify update frequency of a stream: `http://0.0.0.0:8888/modify?frequency=250`
+-   Start stream generation: `http://0.0.0.0:8888/start?frequency=500&replay=true`
 
-- Stop stream generation: `http://0.0.0.0:8888/stop`
+-   Modify update frequency of a stream: `http://0.0.0.0:8888/modify?frequency=250`
 
-Note that the arguments in  `http://0.0.0.0:8888/init` correspond to keys in `config.yaml`.
+-   Stop stream generation: `http://0.0.0.0:8888/stop`
+
+Note that the arguments in `http://0.0.0.0:8888/init` correspond to keys in `config.yaml`.
 Here is an example for the initialization and start of a SUMO traffic stream that sends RDF messages in JSON:
 
 `http://0.0.0.0:8888/init?streamtype=sumo&templatetype=traffic-json`, then
 `http://0.0.0.0:8888/start?frequency=500&replay=true`
-
 
 ### Client side
 

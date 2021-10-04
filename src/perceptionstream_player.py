@@ -6,7 +6,7 @@ import json
 import time
 
 
-class ObjectDetection(AbstractPlayer):
+class PerceptionStreamPlayer(AbstractPlayer):
     observations = {}
     format_data = "n3"
     context = None
@@ -180,7 +180,7 @@ class Observation():
 
 def main():
     player = ObjectDetection(
-        'stream-log-files/kitti/2011_09_26_drive_0015', 'n3')
+        'stream-log-files/perceptionstream/2011_09_26_drive_0015', 'n3')
     player.start(1)
 
 
