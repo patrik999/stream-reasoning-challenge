@@ -63,7 +63,7 @@ Here is an example for the initialization and start of a SUMO traffic stream tha
 `http://0.0.0.0:8888/init?streamtype=sumo&templatetype=traffic-json`, then
 `http://0.0.0.0:8888/start?frequency=500&replay=true`
 
--   For calling API, there is few ways:
+-   To calling the API, there is few ways:
     -   Call by using `curl` in Command Line Interface: `curl --request GET "<url>"`
     -   Open <url> on a browser.
     -   Call by using programming language library such as Python, Java.
