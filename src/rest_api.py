@@ -61,7 +61,8 @@ class RestApi():
 
         @self.api.route('/getkb', methods=['GET'])
         def getkb_route():  # usage: /getkb
-            return json.dumps({"knowledge base": "example"}), 200
+            #return json.dumps({"knowledge base": "example"}), 200
+            return self.player.getkb()
 
         @self.api.route('/start', methods=['GET'])
         def start_route():  # usage: /start?frequency=500
