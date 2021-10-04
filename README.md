@@ -39,9 +39,10 @@ run `docker-compose up --build`
 Stream generation needs first to be initialized, then a new stream can be (re-)started, stopped, and the update frequency modified.
 The following is a list of possible REST-API calls:
 
--   Initialize stream generation: `http://0.0.0.0:8888/init?streamtype=TYPE&templatetype=TEMPLATE`
+-   Initialize stream generation: `http://0.0.0.0:8888/init?streamtype=TYPE&streamid=STREAMID&templatetype=TEMPLATE`
 
     -   Where `TYPE` has to be replaced with the type of stream. Current support are `sumo` and `perceptionstream`
+    -   Where `STREAMID` has to be replaced with the stream ID. For TYPE `sumo`, currently has `streamSumo1`, `streamSumo2` and `streamSumo3`. For TYPE `perceptionstream`, currently has `stream1`, `stream2`, `stream3`, `stream4` and `stream5`.
     -   Where `TEMPLATE` has to be replaced by the output format of send messages. For `sumo`, currently `traffic-json`, `traffic-nt`,
         and `traffic-asp` are choosable. For `perceptionstream`, currently `perceptionstream-n3` and `perceptionstream-nt` are chooseable.
 
