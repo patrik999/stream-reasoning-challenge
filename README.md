@@ -65,7 +65,7 @@ Here is an example for the initialization and start of a SUMO traffic stream tha
 
 -   To calling the API, there is few ways:
     -   Call by using `curl` in Command Line Interface: `curl --request GET "<url>"`
-    -   Open <url> on a browser.
+    -   Open the `<url>` on a browser.
     -   Call by using programming language library such as Python, Java.
 
 ### Client side
