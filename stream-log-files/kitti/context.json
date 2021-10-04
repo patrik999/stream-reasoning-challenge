@@ -1,0 +1,13 @@
+{
+    "semkg": "http://vision.semkg.org/onto/v0.1/",
+    "box": "http://vision.semkg.org/box/",
+    "sosa": "http://www.w3.org/ns/ssn/",
+    "observation": "http://stream-reasoning-challenge.org/observation/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "frame": "http://stream-reasoning-challenge.org/frame/",
+    "detector": "http://stream-reasoning-challenge.org/detector/",
+    "detection": "http://stream-reasoning-challenge.org/detection/",
+    "detectedObject": "http://stream-reasoning-challenge.org/detectedObject/",
+    "detectedBox": "http://stream-reasoning-challenge.org/box/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+}

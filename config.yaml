@@ -16,6 +16,9 @@ streams:
         simpleStream: null
     objdet:
         streamKitti1: stream-log-files/kitti/2011_09_26_drive_0015
+        streamKitti2: stream-log-files/kitti/2011_09_26_drive_0017
+        streamKitti3: stream-log-files/kitti/2011_09_26_drive_0018
+        streamKitti4: stream-log-files/kitti/2011_09_26_drive_0071
 player:
     vissim:
         class: VissimPlayer
@@ -43,9 +46,13 @@ templates:
         subStreamVehicles: stream-templates/traffic/vehicle_template.asp
         subStreamTrafficLights: stream-templates/traffic/traffic_light_template.asp
         backgroundKB: stream-log-files/sumo/traffics_kb_small.asp
-    kitti-json:
-        format: json
+    kitti-jsonld:
+        format: json-ld
+        context: stream-log-files/kitti/context.json
         backgroundKB: stream-log-files/kitti/traffics_kb_small.json
     kitti-n3:
         format: n3
+        backgroundKB: stream-log-files/kitti/traffics_kb_small.json
+    kitti-nt:
+        format: nt
         backgroundKB: stream-log-files/kitti/traffics_kb_small.json

@@ -1,5 +1,6 @@
 from abstract_player import AbstractPlayer
-from rdflib import Graph, URIRef, Literal
+from rdflib import Graph, URIRef, Literal, plugin
+from rdflib.serializer import Serializer
 from rdflib.namespace import SSN, SOSA, RDF, RDFS, XSD
 import json
 import time
@@ -8,15 +9,18 @@ import time
 class ObjectDetection(AbstractPlayer):
     observations = {}
     format_data = "n3"
+    context = None
 
     def __init__(self, stream_id, template_dictionary):
         super().__init__(stream_id, template_dictionary)
 
         # check format type
         self.format_data = template_dictionary["format"]
+        if "context" in template_dictionary:
+            context = json.load(open(template_dictionary["context"]))
 
         # read the log file and convert to a list of observations
-        od = open(self.streamID+".od")
+        od = open(self.streamID+".json")
         ss = open(self.streamID+".sensor")
         detections = json.load(od)
         sensors = json.load(ss)
@@ -52,7 +56,8 @@ class ObjectDetection(AbstractPlayer):
             observation = self.observations[key]
             graph = observation.get_graph(graph)
             #graph.serialize(destination='output.nt', format='n3')
-            message = str(graph.serialize(format=self.format_data))
+            message = str(graph.serialize(
+                format=self.format_data, context=self.context))
             message = message.replace('\\n', '\n').replace(
                 'b\'', '').replace('\'', '')
             # print(message)
