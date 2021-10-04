@@ -60,11 +60,20 @@ class PerceptionStreamPlayer(AbstractPlayer):
                 graph = Graph()
                 observation = self.observations[key]
                 graph = observation.get_graph(graph, self.streamID)
-
-                # graph.serialize(destination='output.nt', format='n3')
-                message = str(graph.serialize(format=self.format_data, context=self.context))
-                message = message.replace('\\n', '\n').replace(
-                    'b\'', '').replace('\'', '')
+                
+                message=""
+                if self.format_data=="asp":
+                    tmp = str(graph.serialize(format="nt"))
+                    tmp = tmp.replace('\\n', '\n').replace(
+                        'b\'', '').replace('\'', '')
+                    for line in tmp.split("\n"):
+                        if line:
+                            message+="stream("+line.replace('<','\"<').replace('>','>\"').replace('\" \"','\",\"').replace(' .',') .')+'\n'
+                else:
+                    # graph.serialize(destination='output.nt', format='n3')
+                    message = str(graph.serialize(format=self.format_data, context=self.context))
+                    message = message.replace('\\n', '\n').replace(
+                        'b\'', '').replace('\'', '')
 
                 yield message
                 #print(message)
@@ -112,9 +121,6 @@ class Observation():
 
     def set_sensor(self, sensor):
         self.sensor = sensor
-
-    def length(self):
-        return self.results.length
 
     def get_graph(self, graph, g_streamId):
         SR_NAMESPACE = 'http://stream-reasoning-challenge.org/'
