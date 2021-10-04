@@ -67,6 +67,7 @@ class PerceptionStreamPlayer(AbstractPlayer):
                     'b\'', '').replace('\'', '')
 
                 yield message
+                #print(message)
                 time.sleep(self.frequency / 1000.0)
                 # Check if stopped
                 if (self.stopped):
@@ -205,46 +206,21 @@ class Observation():
         has_detected_object_property = URIRef(VISION_NAMESPACE + 'hasDetectedObject')
         is_in_property = URIRef(VISION_NAMESPACE + 'isIn');
         labels = {
+            "truck":"03695799-n",
             "bicycle": "02837983-n",
             "car": "02961779-n",
             "bench": "02832068-n",
             "boat": "02861626-n",
-            "toilet": "04453655-n",
-            "bear": "02134305-n",
             "train": "04475240-n",
             "person": "00007846-n",
-            "umbrella": "04514450-n",
-            "knife": "03629343-n",
             "giraffe": "02441664-n",
             "airplane": "02694015-n",
             "parking meter": "03897029-n",
-            "sofa": "04263630-n",
-            "tennis racket": "04416941-n",
-            "backpack": "02772753-n",
-            "frank": "07692347-n",
-            "banana": "07769568-n",
-            "bowl": "02884182-n",
-            "skateboard": "04233049-n",
-            "bottle": "02879899-n",
-            "dog": "02086723-n",
-            "frisbee": "03402783-n",
-            "doughnut": "07654678-n",
-            "bag": "02776843-n",
-            "cup": "03152175-n",
-            "hand blower": "03488399-n",
-            "surfboard": "04370646-n",
-            "traffic light": "06887235-n",
-            "horse": "03543217-n",
-            "motorcycle": "03796045-n",
-            "zebra": "02393701-n",
-            "teddy": "04406517-n",
+            "trafficlight": "06887235-n",
+            "motorbike": "03796045-n",
             "bus": "02927938-n",
-            "chair": "03005231-n",
-            "refrigerator": "04077839-n",
-            "scissors": "04155119-n",
-            "sheep": "02414351-n",
-            "pot": "03997420-n",
-            "cattle": "02405077-n"
+            "firehydrant": "03351744-n",
+            "stopsign":"06887235-n"
         }
 
         result_id = 0
