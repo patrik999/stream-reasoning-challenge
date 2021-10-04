@@ -50,23 +50,43 @@ class ObjectDetection(AbstractPlayer):
         #self.observations = observations
 
     def start(self, freq_in_ms, replay=False):
+        self.frequency = freq_in_ms
+        self.stopped = False
+        self.replay = replay
 
-        for key in sorted(self.observations):
-            graph = Graph()
-            observation = self.observations[key]
-            graph = observation.get_graph(graph)
-            #graph.serialize(destination='output.nt', format='n3')
-            message = str(graph.serialize(
-                format=self.format_data, context=self.context))
-            message = message.replace('\\n', '\n').replace(
-                'b\'', '').replace('\'', '')
-            # print(message)
+        while True:
+            for key in sorted(self.observations):
+                graph = Graph()
+                observation = self.observations[key]
+                graph = observation.get_graph(graph)
+                #graph.serialize(destination='output.nt', format='n3')
+                message = str(graph.serialize(
+                    format=self.format_data, context=self.context))
+                message = message.replace('\\n', '\n').replace(
+                    'b\'', '').replace('\'', '')
+                # print(message)
 
-            yield message
-            time.sleep(self.frequency / 1000.0)
+                yield message
+                time.sleep(self.frequency / 1000.0)
+                # Check if stopped
+                if(self.stopped):
+                    break
+
+            if(not self.replay or self.stopped):
+                break
+            else:
+                print("Simulation restart.")
+                time.sleep(1)
 
     def modify(self, freq_in_ms):
-        pass
+        self.frequency = freq_in_ms
+
+        print("Frequency set to: " + str(freq_in_ms) + " ms")
+
+    def stop(self):
+
+        self.stopped = True
+        print("Player is stopped")
 
 
 class Observation():
