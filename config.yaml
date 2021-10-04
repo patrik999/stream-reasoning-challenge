@@ -57,3 +57,7 @@ templates:
     perceptionstream-nt:
         format: nt
         backgroundKB: stream-log-files/perceptionstream/kb.nt
+    perceptionstream-asp:
+        format: asp
+        backgroundKB: stream-log-files/perceptionstream/kb.asp
+        
