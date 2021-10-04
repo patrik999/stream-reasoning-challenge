@@ -7,6 +7,8 @@ All the details of the hackathon are given in the [overview document](SR_Hackato
 
 ## USAGE
 
+The main idea is that we are using a server to generate stream of data, then stream the data to the client through websocket. The server is also acting as a webserver, so you could control the server throuh our provided REST API.
+
 ### Requirements
 
 Install docker on your system: https://docs.docker.com/get-docker/
