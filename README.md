@@ -50,7 +50,7 @@ The following is a list of possible REST-API calls:
     -   Where `TYPE` has to be replaced with the type of stream. Current support are `sumo` and `perceptionstream`
     -   Where `STREAMID` has to be replaced with the stream ID. For TYPE `sumo`, currently has `streamSumo1`, `streamSumo2` and `streamSumo3`. For TYPE `perceptionstream`, currently has `stream1`, `stream2`, `stream3`, `stream4` and `stream5`.
     -   Where `TEMPLATE` has to be replaced by the output format of send messages. For `sumo`, currently `traffic-json`, `traffic-nt`,
-        and `traffic-asp` are choosable. For `perceptionstream`, currently `perceptionstream-n3`, `perceptionstream-nt` and `perceptionstream-jsonld` are chooseable.
+        and `traffic-asp` are choosable. For `perceptionstream`, currently `perceptionstream-n3`, `perceptionstream-nt`, `perceptionstream-jsonld` and `perceptionstream-asp` are chooseable.
 
 -   Start stream generation: `http://0.0.0.0:8888/start?frequency=500&replay=true`
 
