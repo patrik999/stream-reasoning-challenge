@@ -31,7 +31,7 @@ player:
         class: SimplePlayer
         path: src/simple_player.py
     perceptionstream:
-        class: ObjectDetection
+        class: PerceptionStreamPlayer
         path: src/perceptionstream_player.py
 templates:
     traffic-json:
