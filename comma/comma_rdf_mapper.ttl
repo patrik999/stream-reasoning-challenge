@@ -1,0 +1,53 @@
+@prefix indv: <http://stream-reasoning-challenge.org/indv/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/0> a sosa:Observation;
+  sosa:hasSimpleResult "100"^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "0"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/1> a sosa:Observation;
+  sosa:hasSimpleResult "105"^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "1"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/2> a sosa:Observation;
+  sosa:hasSimpleResult ""^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "2"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/3> a sosa:Observation;
+  sosa:hasSimpleResult "120"^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "3"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/4> a sosa:Observation;
+  sosa:hasSimpleResult "121"^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "4"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/5> a sosa:Observation;
+  sosa:hasSimpleResult ""^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "5"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/6> a sosa:Observation;
+  sosa:hasSimpleResult ""^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "6"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/7> a sosa:Observation;
+  sosa:hasSimpleResult ""^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "7"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/8> a sosa:Observation;
+  sosa:hasSimpleResult "100"^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "8"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/9> a sosa:Observation;
+  sosa:hasSimpleResult "98"^^xsd:int;
+  sosa:observedProperty indv:Speed;
+  sosa:resultTime "9"^^xsd:dateTime .
