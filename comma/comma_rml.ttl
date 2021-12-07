@@ -28,7 +28,7 @@ sem-rc:speed a rr:TriplesMap ;
             rr:predicateMap [ rr:constant sosa:observedProperty ] ;
             rr:objectMap
                 [
-                    rr:constant indv:Speed
+                    rr:constant vsso:Speed
                 ]
         ] ;
 
