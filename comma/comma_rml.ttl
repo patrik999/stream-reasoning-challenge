@@ -6,7 +6,7 @@
 @prefix sem-rc: <http://stream-reasoning-challenge.org/>.
 @prefix sem-speed-obs: <http://stream-reasoning-challenge/vehicle/speed/observation/>.
 @prefix indv: <http://stream-reasoning-challenge.org/indv/>.
-@prefix vsso: <http://automotive.eurecom.fr/vsso#> .
+@prefix vsso: <https://github.com/w3c/vsso#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 
 #Dataset
@@ -23,7 +23,6 @@ sem-rc:speed a rr:TriplesMap ;
             rr:class sosa:Observation
         ] ;
 
-
     rr:predicateObjectMap
         [
             rr:predicateMap [ rr:constant sosa:observedProperty ] ;
@@ -39,7 +38,7 @@ sem-rc:speed a rr:TriplesMap ;
             rr:objectMap
                 [
                     rml:reference "speed" ;
-                    rr:datatype xsd:int
+                    rr:datatype xsd:float
                 ]
         ] ;
 
@@ -53,3 +52,48 @@ sem-rc:speed a rr:TriplesMap ;
                 ]
         ] ;
 .
+
+#Dataset
+sem-rc:steering a rr:TriplesMap ;
+    rml:logicalSource
+        [
+            rml:source "comma.csv" ;
+            rml:referenceFormulation ql:CSV
+        ] ;
+#subject
+    rr:subjectMap
+        [
+            rr:template "http://stream-reasoning-challenge/vehicle/steering/observation/{id}" ;
+            rr:class sosa:Observation
+        ] ;
+
+    rr:predicateObjectMap
+        [
+            rr:predicateMap [ rr:constant sosa:observedProperty ] ;
+            rr:objectMap
+                [
+                    rr:constant vsso:SteeringWheelAngle
+                ]
+        ] ;
+
+    rr:predicateObjectMap
+        [
+            rr:predicate sosa:hasSimpleResult;
+            rr:objectMap
+                [
+                    rml:reference "steering" ;
+                    rr:datatype xsd:float
+                ]
+        ] ;
+
+    rr:predicateObjectMap
+        [
+            rr:predicate sosa:resultTime;
+            rr:objectMap
+                [
+                    rml:reference "datetime" ;
+                    rr:datatype xsd:dateTime
+                ]
+        ] ;
+.
+
