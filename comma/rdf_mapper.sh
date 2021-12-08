@@ -1,1 +1,0 @@
-java -jar mapper.jar -m comma_rml.ttl -o comma_rdf_mapper.ttl -s turtle
