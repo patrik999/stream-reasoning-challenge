@@ -2,8 +2,10 @@ import getopt, sys, os
 import optparse
 import time
 from abstract_player import AbstractPlayer
+import json
+ROOT_PATH = os.path.abspath(os.curdir) + "/"
 
-class comma2k19Player(AbstractPlayer):
+class Comma2k19Player(AbstractPlayer):
     format_data = "ttl"
 
     def init(self, stream_id, template_id):  # __init__
@@ -24,12 +26,16 @@ class comma2k19Player(AbstractPlayer):
 
         # Open one by one the ttl files
 
-        rdf_files = sorted([int(d.name) for d in os.scandir(self.streamID) if d.is_dir()])  # get all the available segment numbers
+        #rdf_files = sorted([int(d.name) for d in os.scandir(ROOT_PATH+self.streamID) if d.is_dir()])  # get all the available segment numbers
+        rdf_files = os.listdir(ROOT_PATH+self.streamID)
 
         while True:
             for file_name in rdf_files:
+                if file_name == "kb.ttl":
+                    continue
                 with open(self.streamID + '/' + file_name) as f:
                     data = f.read()
+                    
 
                 message=""
                 if self.format_data=="ttl":
@@ -50,6 +56,6 @@ class comma2k19Player(AbstractPlayer):
             else:
                 print("Simulation restart.")
                 time.sleep(1)
-                
+
     def modify(self, freq_in_ms):
         self.frequency = freq_in_ms

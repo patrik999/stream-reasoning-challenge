@@ -31,7 +31,7 @@ class RestApi():
                 'templatetype', default="traffic-json", type=str)
             # PS: Changed logic for template ids, if no templated id is given load all templates of type and add them to a dictionary
             #templateID=request.args.get('templateid', default = "substreamVissim1", type = str)
-
+            
             # check if type match with id
             if streamID not in self.config["streams"][streamType]:
                 return json.dumps({"error": "stream ID \""+streamID+"\" does not match with /streams/ids. \""+streamType+"\""}), 400
@@ -47,7 +47,7 @@ class RestApi():
                 return json.dumps({"error": "template type does not match with /templates/types."}), 400
             # if templateID not in self.config["templates"][templateType]:
             #    return json.dumps({"error":"template ID does not match with template type"}), 400
-
+            
             # load player
             PlayerClass = self.player_class_loader(
                 ROOT_PATH+self.config["player"][streamType]["path"], self.config["player"][streamType]["class"])
