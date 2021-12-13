@@ -69,6 +69,7 @@ class RestApi():
             # input parameters
             frequency = request.args.get('frequency', default=500, type=int) # Old 10
             replay = request.args.get('replay', default=False, type=lambda v: v.lower() == 'true')
+            debug_mode = request.args.get('debug', default=0, type=int)
             replayBool = replay # False
             #if(replay=='true'):
             #    replayBool = True
@@ -78,7 +79,11 @@ class RestApi():
                 target=self.broadcasting_thread, args=(self.player.start(frequency,replayBool), ))
             broadcast_thread.start()
 
-            return json.dumps({"message": "success"}), 200
+            message=""
+            if debug_mode==1:
+                message+="! Debug mode are on"
+
+            return json.dumps({"message": "success"+message}), 200
 
         @self.api.route('/stop', methods=['GET'])
         def stop_route():  # usage: /stop

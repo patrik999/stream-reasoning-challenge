@@ -50,25 +50,6 @@ class comma2k19Player(AbstractPlayer):
             else:
                 print("Simulation restart.")
                 time.sleep(1)
-
-
-
-
-
-
-
-
-
-
-
-
-        # Iterate over the rows of the data frame
-        for row in df.iterrows():
-
-            # Semantify the current row of records
-            msgText = semantify_this_row(row_of_records)  # TODO use your own function/code
-            yield msgText
-            time.sleep(self.frequency/1000.0)
-
+                
     def modify(self, freq_in_ms):
         self.frequency = freq_in_ms
