@@ -20,7 +20,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 	$PIP3_INSTALL \
 	flask \
 	pyyaml \
-	websocket_server \
+	websocket_server==0.4 \
 	websocket-client \
 	requests \
 	rdflib \
