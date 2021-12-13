@@ -1,0 +1,13 @@
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix vsso: <https://github.com/w3c/vsso#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://stream-reasoning-challenge/vehicle/speed/observation/3> a sosa:Observation;
+  sosa:hasSimpleResult "27.625"^^xsd:float;
+  sosa:observedProperty vsso:Speed;
+  sosa:resultTime "1970-01-02 05:18:42.250"^^xsd:dateTime .
+
+<http://stream-reasoning-challenge/vehicle/steering/observation/3> a sosa:Observation;
+  sosa:hasSimpleResult "-0.5"^^xsd:float;
+  sosa:observedProperty vsso:SteeringWheelAngle;
+  sosa:resultTime "1970-01-02 05:18:42.250"^^xsd:dateTime .
