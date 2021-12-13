@@ -18,6 +18,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 	&& \
 
 	$PIP3_INSTALL \
+	setuptools \
 	flask \
 	pyyaml \
 	websocket_server==0.4 \
