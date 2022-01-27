@@ -37,7 +37,7 @@ Once you see the output as below, it means the server is ready!
 **Note**: For any server code modification, rebuild the system by running:
 
 ```shell
-run `docker-compose up --build`
+docker-compose up --build
 ```
 
 ### Server API
