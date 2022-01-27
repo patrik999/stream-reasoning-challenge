@@ -14,7 +14,23 @@ The main idea is to use a server to generate a stream of data and then stream th
 Install docker on your system: https://docs.docker.com/get-docker/
 
 ### Server Setup
+To setup the server, you could either choose to use our prebuild docker image for instant test with our standard setup and players or custom and build your own docker image on your local machine.
 
+#### A. Run with prebuild docker image on Docker Hub
+1. Pull image to local:
+```shell
+docker pull manhnguyenduc/stream-reasoning-playground:standard
+```
+
+2. Run server:
+* _The default port for REST API is 8888 and default port for websocket server is 8889, so we should expose it to host_
+```shell
+docker run --rm -p 8888:8888 -p 8889:8889 manhnguyenduc/stream-reasoning-playground:standard
+```
+
+
+
+#### B. Build and run docker image on local machine
 1. Clone this git
 
 ```shell
