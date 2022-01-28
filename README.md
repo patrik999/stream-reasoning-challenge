@@ -61,6 +61,8 @@ docker-compose up --build
 Stream generation needs first to be initialized, then a new stream can be (re-)started, stopped, and the update frequency modified.
 The following is a list of possible REST-API calls:
 
+_* NOTE: if you are working with Docker on Mac OS or Windows OS platform, please try to replace the address `0.0.0.0` by `localhost` if it is not working_
+
 -   Initialize stream generation: `http://0.0.0.0:8888/init?streamtype=TYPE&streamid=STREAMID&templatetype=TEMPLATE`
 
     -   Where `TYPE` has to be replaced with the type of stream. Current support are `sumo` and `perceptionstream`
