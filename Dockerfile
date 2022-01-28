@@ -29,16 +29,19 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 	rdflib \
 	rdflib-jsonld==0.6.1 \
 	&& \
-	ldconfig && \
-	apt-get clean && \
-	apt-get autoremove
+	ldconfig \
+	&& \
 
-RUN add-apt-repository -y ppa:sumo/stable
-RUN apt update
-RUN apt install -y sumo sumo-tools 
+	add-apt-repository -y ppa:sumo/stable &&\
+	apt update && \
+	DEBIAN_FRONTEND=noninteractive $APT_INSTALL \
+	sumo \
+	sumo-tools \
+	&& \
 
-RUN apt remove software-properties-common -y
-RUN apt clean -y && apt autoremove -y
+	apt remove software-properties-common -y && \
+	apt clean -y && \
+	apt autoremove -y
 
 WORKDIR /root
 COPY . .
