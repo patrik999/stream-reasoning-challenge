@@ -46,7 +46,8 @@ templates:
         backgroundKB: stream-log-files/sumo/traffics_kb_small.json
     traffic-nt:
         subStreamVehicles: stream-templates/traffic/vehicle_template.nt
-        subStreamTrafficLights: stream-templates/traffic/trafficLight_template.nt
+        subStreamTrafficLights: stream-templates/traffic/traffic_light_template.nt
+        subStreamTrafficLightsChilds: stream-templates/traffic/traffic_light_template2.nt
         backgroundKB: stream-log-files/sumo/traffics_kb_small.nt
     traffic-asp:
         subStreamVehicles: stream-templates/traffic/vehicle_template.asp
