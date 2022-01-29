@@ -11,7 +11,7 @@ The main idea is to use a server to generate a stream of data and then stream th
 
 ### Requirements
 
-Install docker on your system: https://docs.docker.com/get-docker/
+Install Docker on your system as described in: https://docs.docker.com/get-docker/
 
 ### Server Setup
 To setup the server, you could either choose to use our prebuild docker image for instant test with our standard setup and players or custom and build your own docker image on your local machine.
