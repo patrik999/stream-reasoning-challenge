@@ -77,8 +77,8 @@ class RestApi():
             broadcast_thread.start()
 
             message=""
-            if debug_mode==1:
-                message+="! Debug mode are on"
+            #if debug_mode==1:
+            #    message+="! Debug mode are on"
 
             return json.dumps({"message": "success"+message}), 200
 
