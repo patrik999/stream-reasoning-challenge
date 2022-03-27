@@ -71,7 +71,7 @@ _* NOTE: if you are working with Docker on Mac OS or Windows OS platform, please
         and `traffic-asp` are choosable. For `perceptionstream`, currently `perceptionstream-n3`, `perceptionstream-nt`, `perceptionstream-jsonld` and `perceptionstream-asp` are chooseable.
 
 -   Start stream generation: `http://0.0.0.0:8888/start?frequency=500&replay=true&aggregate=true`
-    -  frequency=500 is update frequency in ms
+    -  frequency=500 is the update frequency in ms
     -  replay=true states that the stream is running infinitely
     -  aggregate=true states that atomt messagess for one (simulation) step are combined and send as a single message
 
