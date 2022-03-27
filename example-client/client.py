@@ -19,7 +19,9 @@ def my_consumer(data):
 with open("../config.yaml","r") as f:
     CONFIG=yaml.safe_load(f)
 
-API_URL="http://"+CONFIG["restapi"]["host"]+":"+str(CONFIG["restapi"]["port"])
+#API_URL="http://"+CONFIG["restapi"]["host"]+":"+str(CONFIG["restapi"]["port"])
+API_URL="http://"+"192.168.0.236"+":"+"8888"
+print("TEST")
 
 #1: call api to init player
 status_code, httpResult= httprequest(API_URL+"/init",params={"streamtype":"simple"
@@ -37,7 +39,7 @@ client=WSClient(httpResult["websocket_url"])
 client.set_consumer_function(my_consumer) #set your custom consumer here
 client.connect()
 
-time.sleep(2) #wait for client connect success
+time.sleep(5) #wait for client connect success
 
 #3: call api to start stream
 status_code, httpResult=httprequest(API_URL+"/start",params={"frequency":10})

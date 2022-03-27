@@ -14,7 +14,7 @@ class SimplePlayer(AbstractPlayer):
         self.templateID = template_id
 
 
-    def start(self, freq_in_ms, replay):
+    def start(self, freq_in_ms, replay=False, aggregate=False):
 
         self.frequency = freq_in_ms
         

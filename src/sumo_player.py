@@ -61,14 +61,16 @@ class SumoPlayer(AbstractPlayer):
 
         if "backgroundKB" in self.templates:
             kbName = self.templates["backgroundKB"]
-            kbText = open(kbName).read()
+            f = open(kbName)
+            kbText = f.read()
+            f.close()
             return kbText
         else:
             return ""
 
     #def start(self, freq_in_ms):
 
-    def start(self, freq_in_ms, replay):
+    def start(self, freq_in_ms, replay, aggregate):
 
 
         self.frequency = freq_in_ms # / 100 # Set to milliseconds * 10
@@ -76,6 +78,7 @@ class SumoPlayer(AbstractPlayer):
         self.step = 0
         self.step2 = 0
         self.replay = replay
+        self.aggregate = aggregate
 
         # Inits
         count_vehicles = 0
@@ -149,6 +152,8 @@ class SumoPlayer(AbstractPlayer):
 
                 self.step2 = int(self.step / self.step_ratio)
 
+                aggregateMsg = ""
+
                 print("Step: " + str(self.step) + " / " + str(self.step2))
 
                 vehicle_id_list = traci.vehicle.getIDList()
@@ -174,7 +179,13 @@ class SumoPlayer(AbstractPlayer):
                     replaceValues["$Type$"] = lc(str(veh_type))
                     veh_acc = round(traci.vehicle.getAcceleration(veh_id), 4)
                     replaceValues["$Accel$"] = str(veh_acc)
-                    veh_angle = round(traci.vehicle.getAngle(veh_id), 4)
+                    veh_angle_str = traci.vehicle.getAngle(veh_id)
+
+                    if not veh_angle_str is None:
+                        veh_angle = round(veh_angle_str, 4)
+                    else:
+                        veh_angle = 0
+
                     replaceValues["$Orient_Heading$"] = str(veh_angle)
                     veh_pos = traci.vehicle.getPosition(veh_id)
                     #veh_pos = veh_pos.replace('(','').replace('','').strip()
@@ -191,7 +202,7 @@ class SumoPlayer(AbstractPlayer):
                         veh_lanePos01 = 1
 
                     lanePosKey = veh_laneID + "#" + str(veh_lanePos01)
-                    print("D2: " + lanePosKey)
+                    #print("D2: " + lanePosKey)
                     if lanePosKey in self.lane_mappings:
                         laneTuple = self.lane_mappings[lanePosKey] # (sumo id, asp id, asp orientation)
                         replaceValues["$LaneID_From$"] = laneTuple[1]
@@ -211,19 +222,19 @@ class SumoPlayer(AbstractPlayer):
                     veh_signals = traci.vehicle.getSignals(veh_id)
                     veh_lane = str(traci.vehicle.getLaneID(veh_id)) + ";" + str(round(traci.vehicle.getLanePosition(veh_id), 4))
 
-                    #print("Speed ", veh_id, ": ", veh_speed, " m/s")
-                    #print("EdgeID of veh ", veh_id, ": ", traci.vehicle.getRoadID(veh_id))
-                    #print('Distance ', veh_id, ": ", traci.vehicle.getDistance(veh_id), " m")
 
                     # Speed
                     msg1 = templ_vehicles
                     for key, val in replaceValues.items():
                         msg1 = msg1.replace(key,val)
                     # print(msg1)
-                    yield msg1
 
-                    #msg1a = "speed(" + str(self.step2) + "," + str(veh_id) + "," + str(veh_speed) + ") ."
-                    #yield msg1a
+                    if not msg1 is None:
+                        if self.aggregate == True:
+                            aggregateMsg = aggregateMsg + "\n" + msg1
+                        else:
+                            yield msg1
+
 
                 # Lanes
                 lane_id_list = traci.lane.getIDList()
@@ -288,7 +299,10 @@ class SumoPlayer(AbstractPlayer):
                                         msg3 = msg2
                                         for key, val in replaceValues2.items():
                                             msg3 = msg3.replace(key,val)
-                                        yield msg3
+                                        if self.aggregate == True:
+                                            aggregateMsg = aggregateMsg + "\n" + msg3
+                                        else:
+                                            yield msg3
 
                                     tlIDcheck[tlID] = ""
 
@@ -296,33 +310,22 @@ class SumoPlayer(AbstractPlayer):
                     # Case with child template (e.g., RDF)
                     if(hasChildTemplate):
                         msg2 = msg2.replace(self.TEMPL_PLACEHOLDER_CHILDS, str(msg2_Childs))
-                        yield msg2
-                    # Case with single template (e.g., ASP) is handled in loop
+                        if self.aggregate == True:
+                            aggregateMsg = aggregateMsg + "\n" + msg2
+                        else:
+                            yield msg2
 
-                #for lane_id in lane_id_list:
-                    #lane_count = int(traci.lane.getLastStepVehicleNumber(lane_id))
 
-                    #if(lane_count > 0):
+                # Case with single template (e.g., ASP) is handled in loop
 
-                        # Merge lanes to road
-                        #msg2 = "info(VehicleCount," + str(self.step2) + "," + str(lane_id) + "," + str(lane_count) + ")"
-                        #yield msg2
-                        #if(not ws is None):
-                            #ws.send(msg1)
-
-                        #waiting_count = int(traci.lane.getWaitingTime(lane_id))
-
-                        #if(waiting_count > 0):
-                            #msg3 = "info(WaitingTime," + str(self.step2) + "," + str(lane_id) + "," + str(waiting_count) + ")"
-                            #yield msg3
-                            #if(not ws is None):
-                            #    ws.send(msg2)
+                if (self.aggregate == True) and (not aggregateMsg is None):
+                    yield aggregateMsg
 
             print("Simulation finished.")
 
             traci.close(False) # Immediate close
 
-            if(not self.replay or self.stopped):
+            if not self.replay or self.stopped:
                 break
             else:
                 print("Simulation restart.")

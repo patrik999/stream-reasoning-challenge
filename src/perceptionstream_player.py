@@ -50,7 +50,7 @@ class PerceptionStreamPlayer(AbstractPlayer):
 
         # self.observations = observations
 
-    def start(self, freq_in_ms, replay=False):
+    def start(self, freq_in_ms, replay=False, aggregate=False):
         self.frequency = freq_in_ms
         self.stopped = False
         self.replay = replay

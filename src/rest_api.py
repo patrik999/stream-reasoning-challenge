@@ -34,7 +34,7 @@ class RestApi():
 
             # check if type match with id
             if streamID not in self.config["streams"][streamType]:
-                return json.dumps({"error": "stream ID \""+streamID+"\" does not match with /streams/ids. \""+streamType+"\""}), 400
+                return json.dumps({"error": "stream ID \""+ streamID+"\" does not match with /streams/ids. \""+streamType+"\""}), 400
 
             # Read all ids and path from streamType in dictionary, this will be give to the player
             templates = {}
@@ -68,14 +68,12 @@ class RestApi():
         def start_route():  # usage: /start?frequency=500
             # input parameters
             frequency = request.args.get('frequency', default=500, type=int) # Old 10
-            replay = request.args.get('replay', default=False, type=lambda v: v.lower() == 'true')
-            replayBool = replay # False
-            #if(replay=='true'):
-            #    replayBool = True
+            replayBool = request.args.get('replay', default=False, type=lambda v: v.lower() == 'true')
+            aggregateBool = request.args.get('aggregate', default=False, type=lambda v: v.lower() == 'true')
 
             # start broadcast messages from player (using multithreading)
             broadcast_thread = threading.Thread(
-                target=self.broadcasting_thread, args=(self.player.start(frequency,replayBool), ))
+                target=self.broadcasting_thread, args=(self.player.start(frequency,replayBool,aggregateBool), ))
             broadcast_thread.start()
 
             return json.dumps({"message": "success"}), 200

@@ -12,13 +12,14 @@ class AbstractPlayer:  #__metaclass__ = ABCMeta
     templateID = ""
     frequency = 500 # Update every 500ms (Old: 0.1)
     replay = False
+    aggregate = False
 
     def __init__(self, stream_id, template_dictionary):  # template_id
         self.streamID = stream_id
         self.templateID = template_dictionary
 
     # Parameter: Freq is int, replay is bool as 0/1
-    def start(self, freq_in_ms, replay):
+    def start(self, freq_in_ms, replay, aggregate):
         # Here comes the open. This needs be be overriten
         return
 
