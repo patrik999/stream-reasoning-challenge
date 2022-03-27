@@ -76,7 +76,11 @@ class RestApi():
                 target=self.broadcasting_thread, args=(self.player.start(frequency,replayBool,aggregateBool), ))
             broadcast_thread.start()
 
-            return json.dumps({"message": "success"}), 200
+            message=""
+            if debug_mode==1:
+                message+="! Debug mode are on"
+
+            return json.dumps({"message": "success"+message}), 200
 
         @self.api.route('/stop', methods=['GET'])
         def stop_route():  # usage: /stop

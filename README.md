@@ -1,9 +1,9 @@
-# Stream Reasoning Hackathon 2021
+# Stream Reasoning Playground
 
-Official repository of the Stream Reasoning Challenge 2021,
+Official repository of the Stream Reasoning Hackathon 2021,
 part of the [Stream Reasoning Workshop 2021](http://streamreasoning.org/events/srw2021).
 
-All the details of the hackathon are given in the [overview document](SR_Hackaton_2021.pdf).
+All the details of the 2021 hackathon are given in the [overview document](SR_Hackaton_2021.pdf).
 
 ## USAGE
 
@@ -11,10 +11,26 @@ The main idea is to use a server to generate a stream of data and then stream th
 
 ### Requirements
 
-Install docker on your system: https://docs.docker.com/get-docker/
+Install Docker on your system as described in: https://docs.docker.com/get-docker/
 
 ### Server Setup
+To setup the server, you could either choose to use our prebuild docker image for instant test with our standard setup and players or custom and build your own docker image on your local machine.
 
+#### A. Run with prebuild docker image on Docker Hub
+1. Pull image to local:
+```shell
+docker pull manhnguyenduc/stream-reasoning-playground:standard
+```
+
+2. Run server:
+* _The default port for REST API is 8888 and default port for websocket server is 8889, so we should expose it to host_
+```shell
+docker run --rm -p 8888:8888 -p 8889:8889 manhnguyenduc/stream-reasoning-playground:standard
+```
+
+
+
+#### B. Build and run docker image on local machine
 1. Clone this git
 
 ```shell
@@ -37,13 +53,15 @@ Once you see the output as below, it means the server is ready!
 **Note**: For any server code modification, rebuild the system by running:
 
 ```shell
-run `docker-compose up --build`
+docker-compose up --build
 ```
 
 ### Server API
 
 Stream generation needs first to be initialized, then a new stream can be (re-)started, stopped, and the update frequency modified.
 The following is a list of possible REST-API calls:
+
+_* NOTE: if you are working with Docker on Mac OS or Windows OS platform, please try to replace the address `0.0.0.0` by `localhost` if it is not working_
 
 -   Initialize stream generation: `http://0.0.0.0:8888/init?streamtype=TYPE&streamid=STREAMID&templatetype=TEMPLATE`
 

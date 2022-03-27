@@ -20,6 +20,8 @@ streams:
         stream3: stream-log-files/perceptionstream/2011_09_26_drive_0018
         stream4: stream-log-files/perceptionstream/2011_09_26_drive_0071
         stream5: stream-log-files/perceptionstream/2011_10_03_drive_0042
+    comma2k19stream:
+        stream1: stream-log-files/comma2k19
 player:
     vissim:
         class: VissimPlayer
@@ -33,6 +35,9 @@ player:
     perceptionstream:
         class: PerceptionStreamPlayer
         path: src/perceptionstream_player.py
+    comma2k19stream:
+        class: Comma2k19Player
+        path: src/comma2k19_player.py
 templates:
     traffic-json:
         subStreamVehicles: stream-templates/traffic/vehicle_template.json
@@ -41,7 +46,8 @@ templates:
         backgroundKB: stream-log-files/sumo/traffics_kb_small.json
     traffic-nt:
         subStreamVehicles: stream-templates/traffic/vehicle_template.nt
-        subStreamTrafficLights: stream-templates/traffic/trafficLight_template.nt
+        subStreamTrafficLights: stream-templates/traffic/traffic_light_template.nt
+        subStreamTrafficLightsChilds: stream-templates/traffic/traffic_light_template2.nt
         backgroundKB: stream-log-files/sumo/traffics_kb_small.nt
     traffic-asp:
         subStreamVehicles: stream-templates/traffic/vehicle_template.asp
@@ -60,3 +66,6 @@ templates:
     perceptionstream-asp:
         format: asp
         backgroundKB: stream-log-files/perceptionstream/kb.asp
+    comma2k19-ttl:
+        format: trace_ttl
+        backgroundKB: stream-log-files/comma2k19stream/kb.ttl
